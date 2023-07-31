@@ -1,0 +1,31 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="view-profile-container">
+        <p id="img-profile-main"><img src="{{ user_profile.image_profile.url }}" alt="profile image"></p>
+        <div id="view-profile-inner-container">
+            <div id="profile_names">
+                <p>{{ user_profile.first_name }}</p>
+                <p>{{ user_profile.last_name }}</p>
+            </div>
+            <div id="age-container">
+                <p>Age: <span>{{ user_profile.age }}</span></p>
+                <p>City: <span>{{ user_profile.city }}</span></p>
+            </div>
+            <div class="bio-container">
+                <p id="bio">Bio</p>
+                <p>{{ user_profile.bio }}</p>
+            </div>
+
+            <div id="profile_links">
+                <a href="{% url 'edit_profile' user.pk %}">Edit</a>
+                <a href="{% url 'delete_user' user.pk %}">Delete</a>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
+
+

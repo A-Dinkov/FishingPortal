@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <section id="create-profile-page">
+        <form id="crete-profile" action="{% url 'create_profile' %}" method="post" enctype="multipart/form-data">
+        <div class="create-profile-container">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn" type="submit">Create Profile</button>
+        </div>
+
+
+    </form>
+
+    </section>
+{% endblock %}

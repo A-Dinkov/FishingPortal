@@ -1,0 +1,257 @@
+#login-page,
+#register-page,
+#create-profile-page,
+#reset-password-page,
+#reset-password-confirm-page,
+#edit-profile-page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 76vh;
+    width: 50vh;
+    background-color: #abefef;
+    margin: auto;
+    border-radius: 70px 0 70px;
+}
+
+h1.register-title {
+    margin-bottom: 0.5rem;
+}
+
+
+div.login-container,
+div.register-container,
+div.create-profile-container,
+div.reset-password-container,
+div.password-reset-done,
+div.reset-password-confirm-container,
+div.password-reset-complete {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+
+}
+
+div .register-container {
+    width: 100%;
+    margin: auto;
+    row-gap: 1.5rem;
+}
+
+#edit-profile-page {
+    height: 76vh;
+    width: 80vh;
+}
+
+div.reset-password-container {
+    width: 85%;
+
+}
+
+div.password-reset-done {
+    align-items: center;
+}
+
+div.login-container {
+    max-width: 80%;
+    margin: auto;
+}
+
+div.create-profile-container {
+    row-gap: 1.5rem;
+}
+
+div.reset-password-confirm-container {
+    width: 75%;
+    align-items: center;
+    margin: auto;
+}
+
+div.password-reset-complete {
+    align-items: center;
+}
+
+div.password-reset-complete a {
+    text-decoration: none;
+    color: #375d6f;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 1px #abefef;
+}
+
+div.password-reset-complete a:hover {
+    text-decoration: underline;
+}
+
+div.password-reset-complete h1 {
+    font-weight: lighter;
+}
+
+label {
+    display: block;
+    color: #0c8380;
+    margin-bottom: 0.5rem;
+}
+
+#id_email {
+    margin-top: 1rem;
+}
+
+input,
+.btn{
+    width: 100%;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+}
+
+input {
+    padding: 0.5rem;
+}
+
+.btn {
+    width: 50%;
+    align-self: center;
+    background-color: #0c8380;
+    color: whitesmoke;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+}
+
+.btn.register {
+    margin-top: 0.5rem;
+}
+
+#password-confirm-btn {
+    font-size: 1rem;
+}
+
+
+p.register {
+    color: #0c8380;
+}
+
+p.register a{
+    color: #0c8380;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+img.logo-login,
+img.logo-register {
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin: 1.5rem auto;
+
+}
+
+img.logo-register {
+    width: 100px;
+    height: 100px;
+    margin: 1.2rem auto;
+}
+
+a.password-reset-link {
+    color: #0c8380;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a.password-reset-link:hover {
+
+    text-decoration: underline;
+}
+
+#register,
+#reset-password {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 1.5rem;
+}
+
+#id_consent {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: none;
+
+}
+
+#id_consent:hover {
+    cursor: pointer;
+}
+
+p.consent {
+    display: inline-block;
+    color: #0c8380;
+}
+
+p.consent span {
+    margin-left: 0.5rem;
+}
+
+p.consent a,
+p.login a {
+    text-decoration: none;
+    color: #375d6f;
+    font-weight: bold;
+}
+
+p.consent a:hover,
+p.login a:hover {
+    text-decoration: underline;
+}
+
+#id_bio {
+    border: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.custom-file-input + label{
+    border: none;
+    background-color: #0c8380;
+}
+
+
+#reset-password-confirm {
+    display: flex;
+    width: 100%;
+}
+
+div.reset-password-container p {
+    align-self: center;
+}
+
+div.name-edit-profile {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3.3rem;
+    align-self: flex-start;
+}
+
+div.bio-pic {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3rem;
+}
+
+.btn.edit-profile {
+    margin-top: 4rem;
+    align-self: center;
+}
+
+#edit-profile{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+

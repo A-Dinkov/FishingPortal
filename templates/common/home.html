@@ -1,0 +1,29 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% load get_user_profile %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% if user_profile %}
+            <div class="main-container">
+                <h1>Welcome to your Fishing Portal</h1>
+            </div>
+        {% else %}
+            <div class="main-container">
+                <h1>Welcome to your Fishing Portal</h1>
+                <p class="create-profile"><a href="{% url 'create_profile' %}">Create profile</a></p>
+            </div>
+
+        {% endif %}
+
+    {% else %}
+        <div class="main-container">
+            <h1>Welcome</h1>
+            <h1>to</h1>
+            <img class="logo" src="{% static 'images/app_logo.png' %}" alt="">
+            <div class="login-wrapper"><a class="button welcome" href="{% url 'login' %}">Log in</a></div>
+
+        </div>
+
+    {% endif %}
+{% endblock %}

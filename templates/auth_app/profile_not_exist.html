@@ -1,0 +1,10 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="missing_profile">
+        <h1>Profile is not yet created!</h1>
+        <a href="{% url 'create_profile' %}">Create profile</a>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <section id="login-page">
+        <img class="logo-login" src="{% static 'images/app_logo.png' %}" alt="">
+        <form id="login" action="{% url 'login' %}" method="post">
+
+            <div class="login-container">
+
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <a class="password-reset-link" href="{% url 'password_reset' %}">Forgotten your password?</a>
+
+                <button class="btn" type="submit">Log in</button>
+            </div>
+
+            <p class="register">If you don't have registration. <a href="{% url 'register' %}">Sign Up</a></p>
+        </form>
+    </section>
+
+{% endblock %}

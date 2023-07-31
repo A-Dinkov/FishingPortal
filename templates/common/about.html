@@ -1,0 +1,60 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <main class="about-container">
+        <section class="business-img">
+            <img src="{% static 'images/lake_fishing1.jpg'%}" alt="">
+            <img src="{% static 'images/lake_fishing2.jpg'%}" alt="">
+            <img src="{% static 'images/lake_fishing3.jpg'%}" alt="">
+            <img src="{% static 'images/lake_fishing4.jpg'%}" alt="">
+        </section>
+        <section class="description">
+            <h1>Welcome to the Fishing Portal!</h1>
+            <div class="description-wrapper">
+                <p>
+                    Discover the ultimate online destination for fishing enthusiasts and lake owners alike.
+                    Our cutting-edge Django-based platform brings together a thriving community where lake owners can
+                    showcase their picturesque fishing spots and businesses, while passionate fishermen can share their
+                    exciting fishing adventures, post captivating pictures, and engage in thrilling fishing competitions
+                    .
+                </p>
+                <p>
+                    Explore the serene lakes and waterside retreats offered by lake owners who have registered their
+                    businesses on our platform. From tranquil ponds teeming with abundant fish to sprawling lakes
+                    surrounded by breathtaking landscapes, there's a fishing spot for every angler's dream.
+                </p>
+                <p>
+                    For the adventurous fishermen, this is your chance to shine! Share your exhilarating fishing stories
+                    and create thrilling posts about your most memorable catches. Inspire others with your expertise,
+                    tips, and tricks to improve their fishing prowess.
+                </p>
+                <p>
+                    Participate in exciting fishing competitions that will put your skills to the test. Compete against
+                    fellow anglers, earn badges, and climb up the ranks to become the fishing champion of our community.
+                </p>
+                <p>
+                    Our user-friendly interface ensures a seamless experience for both lake owners and fishermen.
+                    Register your business with ease, create stunning fishing adventure posts, and interact with other
+                    fishing enthusiasts effortlessly.
+                </p>
+                <p>
+                    Join the Fishing Portal today and become a part of a vibrant community that shares the passion for
+                    fishing and the love for the great outdoors. Whether you're a seasoned angler or a lake owner
+                    looking to connect with fishing enthusiasts, this is the place where your fishing journey begins!
+                </p>
+                <p>
+                    Dive into the Fishing Portal now and let the adventure unfold!
+                </p>
+            </div>
+
+        </section>
+        <section class="privet-img">
+            <img src="{% static 'images/privet_img1.jpg'%}" alt="">
+            <img src="{% static 'images/privet_img2.jpg'%}" alt="">
+            <img src="{% static 'images/privet_img3.jpg'%}" alt="">
+            <img src="{% static 'images/privet_img4.jpg'%}" alt="">
+        </section>
+    </main>
+
+{% endblock %}

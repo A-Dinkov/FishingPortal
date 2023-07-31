@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <section id="edit-profile-page">
+        <form method="post" action="{% url 'edit_profile' userprofile.pk %}"
+              id="edit-profile" enctype="multipart/form-data">
+            <div class="main-container edit-profile">
+                {% csrf_token %}
+                <div class="name-edit-profile">
+                    {{ form.first_name }}
+                    {{ form.last_name }}
+                    {{ form.age }}
+                    {{ form.city }}
+                </div>
+                <div class="bio-pic">
+                    {{ form.bio }}
+                    {{ form.image_profile }}
+                </div>
+            </div>
+            <button class="btn edit-profile">Submit</button>
+        </form>
+    </section>
+{% endblock %}
