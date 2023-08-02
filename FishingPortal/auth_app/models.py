@@ -1,5 +1,5 @@
 from django.contrib.auth import models as auth_models, get_user_model
-from django.core.validators import FileExtensionValidator, MinValueValidator
+from django.core.validators import FileExtensionValidator, MinValueValidator, MinLengthValidator, MaxLengthValidator
 from django.db import models
 from django.utils import timezone
 from FishingPortal.auth_app.managers import RegularUserManager
@@ -58,13 +58,28 @@ UserModel = get_user_model()
 
 
 class UserProfile(models.Model):
+    MIN_LENGTH_NAME = 2
+    MAX_LENGTH_NAME = 50
+    MIN_AGE = 16
+
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, primary_key=True)
+
     first_name = models.CharField(
-        max_length=150,
+        blank=False,
+        null=False,
+        validators=(
+            MinValueValidator(MIN_LENGTH_NAME),
+            MaxLengthValidator(MAX_LENGTH_NAME),
+        )
     )
 
     last_name = models.CharField(
-        max_length=150,
+        blank=False,
+        null=False,
+        validators=(
+            MinValueValidator(MIN_LENGTH_NAME),
+            MaxLengthValidator(MAX_LENGTH_NAME),
+        )
 
     )
 
@@ -72,7 +87,7 @@ class UserProfile(models.Model):
         blank=True,
         null=True,
         validators=(
-            MinValueValidator(16),
+            MinValueValidator(MIN_AGE),
         )
     )
 
