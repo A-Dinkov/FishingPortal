@@ -47,6 +47,12 @@
                     Dive into the Fishing Portal now and let the adventure unfold!
                 </p>
             </div>
+            {% if not request.user.is_authenticated %}
+                <div id="about-page-login-link">
+                    <a class="btn" href="{% url 'login' %}">Sign In</a>
+                </div>
+            {% endif %}
+
 
         </section>
         <section class="privet-img">

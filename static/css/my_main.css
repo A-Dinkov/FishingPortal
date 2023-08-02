@@ -21,6 +21,7 @@ div.base-main-container {
         display: flex;
         flex-direction: column;
         margin-bottom: 2rem;
+        margin-top: 110px;
 }
 
 div.main-container {
@@ -69,11 +70,11 @@ div.login-wrapper {
         height: 50px;
         border-radius: 12px;
 
-
 }
 
 div.login-wrapper:hover {
         box-shadow: 0 0 25px #375d6f;
+
 }
 
 div.login-wrapper a.button.welcome {
@@ -233,12 +234,16 @@ main.about-container {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        /*width: 100%;*/
+        max-height: 100%;
 
 }
 
 main.about-container section {
-        width: 30%;
+        max-width: 30%;
+}
+
+main.about-container section:nth-child(2) {
+        max-width: 35%;
 }
 
 section.business-img,
@@ -248,6 +253,7 @@ section.privet-img {
         flex-wrap: wrap;
         column-gap: 1rem;
         align-items: center;
+        justify-content: space-between;
 }
 
 main.about-container section img {
@@ -258,6 +264,8 @@ section.description {
         display: flex;
         flex-direction: column;
         row-gap: 1rem;
+        max-height: 60%;
+        margin: 0 1.5rem 0 1.5rem;
 }
 
 section.description h1 {
@@ -266,6 +274,26 @@ section.description h1 {
 
 section.description p {
         line-height: 1.4;
+        text-align: center;
+}
+
+div #about-page-login-link {
+        align-self: center;
+
+}
+
+
+div #about-page-login-link a.btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        text-decoration: none;
+}
+
+div #about-page-login-link a.btn:hover {
+        box-shadow: 0 0 25px #375d6f;
+        background-color: #0e9c94;
 }
 
 div.delete-user {

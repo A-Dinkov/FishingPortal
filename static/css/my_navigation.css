@@ -11,7 +11,8 @@ header {
     background-color: #0e9c94;
     margin-right: auto;
     border: 3px solid #0e9c94;
-    /*position: sticky;*/
+    position: fixed;
+    top: 0;
     margin-bottom: 2rem;
 }
 
