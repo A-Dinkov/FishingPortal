@@ -19,6 +19,13 @@
     <title>Fishing Portal</title>
 </head>
 <body>
+
+    {% for message in messages %}
+        <div id="message-container">
+            <div class="message">{{ message }}</div>
+        </div>
+    {% endfor %}
+
     <div class="base-main-container">
         <header>
             <a class="nav-logo" href="{% url 'home' %}"><img
@@ -67,6 +74,6 @@
     <footer id="site-footer">
         <p>Python Web Framework</p>
     </footer>
-
+    <script src="{% static 'js/registered_warning.js' %}"></script>
 </body>
 </html>

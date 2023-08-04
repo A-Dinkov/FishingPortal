@@ -2,19 +2,20 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as auth_views
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView, \
     PasswordResetConfirmView, PasswordResetCompleteView
 
 
-from FishingPortal.auth_app.forms import RegularUserCreationForm, ProfileCreationForm, DeleteUserForm, \
-    CustomPasswordResetForm, AppSetPasswordForm, UserProfileEditForm
+from FishingPortal.auth_app.forms import RegularUserCreationForm, ProfileCreationForm, \
+    CustomPasswordResetForm, AppSetPasswordForm, UserProfileEditForm, CustomLoginForm
+from FishingPortal.auth_app.mixins import AnonymousUserOnlyMixin
 from FishingPortal.auth_app.models import RegularUser, UserProfile
 
 
-class RegisterUser(SuccessMessageMixin, auth_views.CreateView):
+class RegisterUser(AnonymousUserOnlyMixin, SuccessMessageMixin, auth_views.CreateView,):
     template_name = 'auth_app/register.html'
     success_url = reverse_lazy('home')
     success_message = 'Your registration is successful'
@@ -83,6 +84,7 @@ class UpdateUserProfileView(LoginRequiredMixin, auth_views.UpdateView):
 
 class CustomLoginView(LoginView):
     template_name = 'auth_app/login.html'
+    form_class = CustomLoginForm
 
 
 class CustomLogoutView(LogoutView):

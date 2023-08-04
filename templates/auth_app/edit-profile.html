@@ -19,5 +19,17 @@
             </div>
             <button class="btn edit-profile">Submit</button>
         </form>
+        {% if form.errors %}
+        <div>
+            <h3>Validation error:</h3>
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ field }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     </section>
 {% endblock %}

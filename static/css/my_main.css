@@ -20,7 +20,7 @@ body {
 div.base-main-container {
         display: flex;
         flex-direction: column;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         margin-top: 110px;
 }
 
@@ -28,7 +28,7 @@ div.main-container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        row-gap: 1.5rem;
+        row-gap: 1.4rem;
         flex: 1;
 }
 
@@ -47,8 +47,8 @@ div.main-container h1 {
 
 img.logo {
         align-self: center;
-        width: 20rem;
-        height: 20rem;
+        width: 19rem;
+        height: 19rem;
         box-shadow: 0 0 25px 15px #ccc;
         margin-bottom: 2rem;
         border-radius: 100%;
@@ -308,4 +308,24 @@ div.delete-user input.btn {
 }
 div.delete-user p {
         font-size: 1.2rem;
+}
+
+/* my_styles.css (or your CSS file) */
+.message {
+  position: fixed;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Hide the message after the fading effect */
+.message.fade-out {
+  opacity: 0;
+  pointer-events: none; /* This prevents interactions with the hidden message */
 }

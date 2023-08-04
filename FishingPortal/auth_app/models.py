@@ -68,7 +68,7 @@ class UserProfile(models.Model):
         blank=False,
         null=False,
         validators=(
-            MinValueValidator(MIN_LENGTH_NAME),
+            MinLengthValidator(MIN_LENGTH_NAME),
             MaxLengthValidator(MAX_LENGTH_NAME),
         )
     )
@@ -77,7 +77,7 @@ class UserProfile(models.Model):
         blank=False,
         null=False,
         validators=(
-            MinValueValidator(MIN_LENGTH_NAME),
+            MinLengthValidator(MIN_LENGTH_NAME),
             MaxLengthValidator(MAX_LENGTH_NAME),
         )
 

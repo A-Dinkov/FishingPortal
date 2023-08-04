@@ -1,13 +1,17 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AdminPasswordChangeForm, BaseUserCreationForm, \
-    PasswordResetForm, SetPasswordForm
+    PasswordResetForm, SetPasswordForm, AuthenticationForm
 from FishingPortal.auth_app.models import RegularUser, UserProfile
 
 
+UserModel = get_user_model()
+
+
 class RegularUserCreationForm(BaseUserCreationForm):
-    email = forms.CharField(
+    email = forms.EmailField(
         label='',
-        widget=forms.TextInput(attrs={
+        widget=forms.EmailInput(attrs={
             'class': 'form-control',
             'placeholder': 'Enter email'
         }),
@@ -47,6 +51,30 @@ class RegularUserCreationForm(BaseUserCreationForm):
         fields = ('email', 'password1', 'password2', 'consent')
 
 
+class CustomLoginForm(AuthenticationForm):
+
+    username = forms.EmailField(
+        label='',
+        widget=forms.EmailInput(attrs={
+            'placeholder': 'Enter email'
+        }),
+
+    )
+
+    password = forms.CharField(
+        label='',
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            "autocomplete": "current-password",
+            'placeholder': 'Enter password',
+        }),
+    )
+
+    # class Meta:
+    #     model = UserModel
+    #     fields = ('email', 'password')
+
+
 class ProfileCreationForm(forms.ModelForm):
 
     class Meta:
@@ -79,7 +107,9 @@ class ProfileCreationForm(forms.ModelForm):
             ),
 
             'bio': forms.Textarea(
-                attrs={'placeholder': 'Write something about yourself'}
+                attrs={'placeholder': 'Write something about yourself',
+                       'rows': 5, 'cols': 40
+                       }
             )
         }
 
@@ -87,23 +117,16 @@ class ProfileCreationForm(forms.ModelForm):
 class RegularUserChangeForm(UserChangeForm):
 
     class Meta(UserCreationForm.Meta):
-        model = RegularUser
+        model = UserModel
         fields = ('email', 'password')
 
 
-class UserProfileEditForm(forms.ModelForm):
-
-    class Meta:
-        model = UserProfile
-        fields = ['first_name', 'last_name', 'age', 'city', 'bio', 'image_profile']
-
-        labels = {
-            'first_name': '',
-            'last_name': '',
-            'age': '',
-            'city': '',
-            'bio': '',
-            'image_profile': ''
+class UserProfileEditForm(ProfileCreationForm):
+    class Meta(ProfileCreationForm.Meta):
+        widgets = {
+            'bio': forms.Textarea(
+                attrs={'rows': 10, 'cols': 40}
+            )
         }
 
 
@@ -115,7 +138,7 @@ class CustomAdminPasswordChangeForm(AdminPasswordChangeForm):
 
 
 class DeleteUserForm(forms.ModelForm):
-    model = RegularUser, UserProfile
+    model = UserModel, UserProfile
 
     class Meta:
 
@@ -134,7 +157,7 @@ class CustomPasswordResetForm(PasswordResetForm):
     )
 
     class Meta(PasswordResetForm):
-        model = RegularUser
+        model = UserModel
         fields = ('email', )
 
 
@@ -158,5 +181,5 @@ class AppSetPasswordForm(SetPasswordForm):
     )
 
     class Meta(SetPasswordForm):
-        model = RegularUser
+        model = UserModel
         fields = ('new_password1', 'new_password2')
