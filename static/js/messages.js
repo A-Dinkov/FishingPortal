@@ -1,5 +1,4 @@
-// messages.js
-// messages.js
+
 document.addEventListener("DOMContentLoaded", function() {
   const messages = document.getElementsByClassName("message");
 
@@ -11,11 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 3000);
   }
 
-  // After the fading effect, remove the messages from the DOM
   setTimeout(function() {
     for (let i = 0; i < messages.length; i++) {
       const message = messages[i];
       message.style.display = "none";
     }
-  }, 3500); // Adjust the time to match the fading duration + additional time before removing from the DOM
+  }, 3500);
 });

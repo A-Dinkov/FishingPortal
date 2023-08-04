@@ -70,10 +70,6 @@ class CustomLoginForm(AuthenticationForm):
         }),
     )
 
-    # class Meta:
-    #     model = UserModel
-    #     fields = ('email', 'password')
-
 
 class ProfileCreationForm(forms.ModelForm):
 
