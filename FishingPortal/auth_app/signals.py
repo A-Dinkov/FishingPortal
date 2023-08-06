@@ -14,3 +14,4 @@ def set_regular_user(sender, instance, created, **kwargs):
 def update_is_regular_user(sender, instance, **kwargs):
     if instance.is_staff:
         instance.is_regular_user = False
+        instance.save()

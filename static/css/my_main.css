@@ -100,7 +100,7 @@ p.create-profile a:hover {
 div.view-profile-container {
         display: flex;
         flex-direction: column;
-        row-gap: 1.5rem;
+        row-gap: 1rem;
         align-items: center;
 }
 

@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls,),
     path('', include('FishingPortal.auth_app.urls')),
     path('', include('FishingPortal.common.urls')),
-    # path('business/', include('FishingPortal.business.urls')),
+    path('business/', include('FishingPortal.business.urls')),
 
 ]

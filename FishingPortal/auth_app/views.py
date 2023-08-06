@@ -102,7 +102,7 @@ class DeleteUser(LoginRequiredMixin, auth_views.DeleteView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        messages.success(self.request, "The task was deleted successfully.")
+        messages.success(self.request, "The user was deleted successfully.")
         return super(DeleteUser, self).form_valid(form)
 
 

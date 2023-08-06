@@ -3,7 +3,8 @@
 #create-profile-page,
 #reset-password-page,
 #reset-password-confirm-page,
-#edit-profile-page{
+#edit-profile-page,
+#create-business-page{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,10 +27,15 @@ div.create-profile-container,
 div.reset-password-container,
 div.password-reset-done,
 div.reset-password-confirm-container,
-div.password-reset-complete {
+div.password-reset-complete,
+div.create-business-container{
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
+}
+
+div.create-business-container {
+    row-gap: 1rem;
 }
 
 div .register-container {

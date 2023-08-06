@@ -1,0 +1,12 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="delete-business">
+        <h2>Confirm Deletion</h2>
+        <p>Are you sure you want to delete the business "{{ business.lake_name }}"?</p>
+        <form method="post" action="{% url 'delete' business.slug %}">
+        {% csrf_token %}
+        <input class="btn" type="submit" value="Delete">
+        </form>
+    </div>
+{% endblock %}

@@ -3,7 +3,7 @@ from django.core.validators import FileExtensionValidator, MinValueValidator, Mi
 from django.db import models
 from django.utils import timezone
 from FishingPortal.auth_app.managers import RegularUserManager
-from FishingPortal.auth_app.validators import ValidateImageSize
+from FishingPortal.auth_app.validators import ValidateImageSize, ValidateIsOnlyAlpha
 
 
 class RegularUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
@@ -70,6 +70,7 @@ class UserProfile(models.Model):
         validators=(
             MinLengthValidator(MIN_LENGTH_NAME),
             MaxLengthValidator(MAX_LENGTH_NAME),
+            ValidateIsOnlyAlpha()
         )
     )
 
@@ -79,6 +80,7 @@ class UserProfile(models.Model):
         validators=(
             MinLengthValidator(MIN_LENGTH_NAME),
             MaxLengthValidator(MAX_LENGTH_NAME),
+            ValidateIsOnlyAlpha()
         )
 
     )

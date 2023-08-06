@@ -15,7 +15,7 @@ class ValidateIsAlAlphaNumHypAndUnderscore:
 
         elif not re.match(second_pattern, value):
             raise ValidationError(
-                "Name can't only white spaces"
+                "Name can't be white spaces"
             )
 
     def __eq__(self, other):

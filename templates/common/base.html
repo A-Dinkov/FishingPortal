@@ -38,12 +38,15 @@
                             {% if request.user.is_superuser or request.user.is_staff %}
                                 <li><a class="button" href="{% url 'admin:index' %}">ADMIN</a></li>
                                 <li><a class="button" href="{% url 'about' %}">ABOUT</a></li>
+                                <li><a class="button" href="{% url 'create_business' %}">CREATE BUSINESS</a></li>
                                 <li><a class="button" href="#">PONDS</a></li>
                                 <li><a class="button" href="#">COMPETITIONS</a></li>
                                 <li><a class="button" href="{% url 'profile' user.pk %}">PROFILE</a></li>
                                 <li><a class="button" href="{% url 'logout' %}">LOGOUT</a></li>
                             {% else %}
+                                <li><a class="button" href="{% url 'show_business' business.pk %}">SHOW BUSINESS</a></li>
                                 <li><a class="button" href="{% url 'about' %}">ABOUT</a></li>
+                                <li><a class="button" href="{% url 'create_business' %}">CREATE BUSINESS</a></li>
                                 <li><a class="button" href="#">PONDS</a></li>
                                 <li><a class="button" href="#">COMPETITIONS</a></li>
                                  <li><a class="button" href="{% url 'profile' user.pk %}">PROFILE</a></li>
