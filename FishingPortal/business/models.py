@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator, FileExtensionValidator, MaxLengthValidator
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.urls import reverse
+
 from FishingPortal.auth_app.validators import ValidateImageSize, ValidateIsOnlyAlpha
 from FishingPortal.business.validators import ValidateIsAlAlphaNumHypAndUnderscore
 
@@ -14,14 +16,16 @@ class Business(models.Model):
     MIN_LENGTH_NAME = 2
     MAX_LENGTH_CITY = 80
     MIN_LENGTH_CITY = 2
+    MAX_LENGTH_COORDINATES = 50
     MAX_LENGTH_LOCATION = 500
     MAX_LENGTH_DESCRIPTION = 1000
 
+    objects = models.Manager()
+
     lake_name = models.CharField(
         unique=True,
-        blank=False,
-        null=False,
-        default='default_name',
+        blank=True,
+        null=True,
         validators=(
             ValidateIsAlAlphaNumHypAndUnderscore(),
             MinLengthValidator(MIN_LENGTH_NAME),
@@ -42,6 +46,9 @@ class Business(models.Model):
     coordinates = models.CharField(
         blank=True,
         null=True,
+        validators=(
+            MaxLengthValidator(MAX_LENGTH_COORDINATES),
+        )
     )
 
     location = models.TextField(
@@ -70,18 +77,21 @@ class Business(models.Model):
         )
     )
 
-    owner = models.ForeignKey(UserModel, on_delete=models.CASCADE, blank=True, null=True)
+    owner = models.ForeignKey(UserModel, on_delete=models.CASCADE,)
 
     slug = models.SlugField(
         unique=True,
-        blank=False,
-        null=False,
-        default='default-slug'
     )
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         if not self.slug:
-            lake_name = '-'.join(self.lake_name.split())
+            split_lake_name = self.lake_name.split()
+            lower_case_lake_name = [x.lower() for x in split_lake_name]
+            lake_name = '-'.join(lower_case_lake_name)
             self.slug = slugify(f'{self.pk}-{lake_name}')
+        return super().save(*args, **kwargs)
 
+    def __str__(self):
+        return f'{self.lake_name}'
 

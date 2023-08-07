@@ -1,0 +1,13 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div id="business-show-container">
+        <p><img src="{{ business.business_images.url }}" alt=""></p>
+        <p>{{ business.lake_name }}</p>
+        <p>{{ business.city }}</p>
+        <p>{{ business.coordinates }}</p>
+        <p>{{ business.location }}</p>
+        <p>{{ business.description }}</p>
+        <p>{{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+    </div>
+{% endblock %}

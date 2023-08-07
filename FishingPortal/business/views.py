@@ -1,9 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views import generic as view
+from django.views import generic as views
 
 from FishingPortal.business.forms import BusinessCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -13,42 +13,43 @@ from .models import Business
 UserModel = get_user_model()
 
 
-# @login_required
-# def business_create_view(request):
-#     form = BusinessCreationForm(request.POST or None)
-#
-#     if form.is_valid:
-#         form.save()
-#         return redirect('show_business')
-#
-#     context = {
-#         'form': form,
-#     }
-#
-#     return render(request, 'business/create.html', context)
-
-
 class BusinessCreateView(LoginRequiredMixin, CreateView):
     model = Business
     form_class = BusinessCreationForm
-    template_name = 'business/create.html'  # Replace with your actual template path
-    success_url = reverse_lazy('show_business')
+    template_name = 'business/create.html'
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        # Set the currently logged-in user as the owner of the business being created
-        form.instance.owner = self.request.user
+        business = form.save(commit=False)
+        business.owner = self.request.user
+        business.save()
         return super().form_valid(form)
 
 
-class BusinessShowView(LoginRequiredMixin, view.DetailView):
-    template_name = 'business/show.html'
+# @login_required
+# def business_details(request, slug):
+#     business = Business.objects.filter(slug=slug).get()
+#
+#     context = {
+#         'business': business,
+#     }
+#
+#     return render(request, 'business/details.html', context)
+
+
+class BusinessDetailView(LoginRequiredMixin, views.DetailView):
     model = Business
-    form_class = BusinessCreationForm
-    context_object_name = 'business'
+    template_name = 'business/details.html'
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
 
 
+class BusinessOwnerView(LoginRequiredMixin, views.ListView):
+    template_name = 'business/private.html'
+    model = Business
 
-class DeleteBusinessView(LoginRequiredMixin, view.DeleteView):
+
+class DeleteBusinessView(LoginRequiredMixin, views.DeleteView):
     template_name = 'business/delete.html'
     context_object_name = 'business'
     success_url = 'home'
@@ -57,5 +58,3 @@ class DeleteBusinessView(LoginRequiredMixin, view.DeleteView):
         messages.success(self.request, "The business was deleted successfully.")
         return super(DeleteBusinessView, self).form_valid(form)
 
-# def delete_business(request, pk):
-#     business = Business.objects.all().

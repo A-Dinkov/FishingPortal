@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+
+        <div id="business-list-page">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lake Name</th>
+                        <th>City</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for business in object_list %}
+                    <tr>
+                        <td>{{ business.lake_name }}</td>
+                        <td>{{ business.city }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+{% endblock %}

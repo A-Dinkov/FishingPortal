@@ -327,3 +327,10 @@ div.delete-user p {
   opacity: 0;
   pointer-events: none;
 }
+
+#business-show-container {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        align-self: center;
+}

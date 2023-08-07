@@ -4,12 +4,13 @@ from FishingPortal.business.models import Business
 
 
 class BusinessCreationForm(forms.ModelForm):
+
     class Meta:
         model = Business
-        fields = '__all__'
+        fields = ('lake_name', 'city', 'coordinates', 'location', 'description', 'business_images')
 
         labels = {
-            'business_name': '',
+            'lake_name': '',
             'city': '',
             'coordinates': '',
             'location': '',
@@ -17,21 +18,21 @@ class BusinessCreationForm(forms.ModelForm):
         }
 
         widgets = {
-            'business_name': forms.TextInput(
+            'lake_name': forms.TextInput(
                 attrs={
-                    'placeholder': 'Name of your business'
+                    'placeholder': 'Name of your business(lake)'
                 }
             ),
 
             'city': forms.TextInput(
                 attrs={
-                    'placeholder': 'Name of the city or the one nearby'
+                    'placeholder': 'Name of the city/village or the one nearby'
                 }
             ),
 
             'coordinates': forms.TextInput(
                 attrs={
-                    'placeholder': 'Enter coordinates: 41.40338, 2.17403'
+                    'placeholder': 'Enter coordinates in format: 41.40338, 2.17403'
                 }
             ),
 
@@ -52,5 +53,4 @@ class BusinessCreationForm(forms.ModelForm):
                 }
             ),
 
-            'owner': forms.HiddenInput()
         }
