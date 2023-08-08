@@ -1,13 +1,19 @@
 from django import forms
-
 from .models import Competition
+from ..business.models import Business
 
 
 class CompetitionCreationForm(forms.ModelForm):
+    def __init__(self, *args, user=None, **kwargs):
+        super(CompetitionCreationForm, self).__init__(*args, **kwargs)
+        if user:
+            self.fields['business'].queryset = Business.objects.filter(owner=user)
+
+    business = forms.ModelChoiceField(queryset=Business.objects.none())  # Set an empty default queryset
 
     class Meta:
         model = Competition
-        fields = ('name', 'place', 'date', 'description')
+        fields = ('name', 'place', 'date', 'business', 'description')
 
         labels = {
             'name': '',
@@ -30,7 +36,10 @@ class CompetitionCreationForm(forms.ModelForm):
             ),
 
             'description': forms.Textarea(
-                attrs={'placeholder': 'Additional info'}
+                attrs={'placeholder': 'Additional info', 'rows': 5, 'cols': 40}
             ),
 
+
         }
+
+

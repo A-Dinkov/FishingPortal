@@ -12,6 +12,11 @@ class CompetitionCreateView(LoginRequiredMixin, views.CreateView):
     template_name = 'competition/create.html'
     success_url = reverse_lazy('private_page')
 
+    def get_form_kwargs(self):
+        kwargs = super(CompetitionCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         competition = form.save(commit=False)
         competition.business = self.request.user.owned_businesses.first()

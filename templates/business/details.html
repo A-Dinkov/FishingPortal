@@ -2,14 +2,15 @@
 
 {% block content %}
     <div id="business-show-container">
+        <h2>Details</h2>
         <img class="img-lake-details" src="{{ business.business_images.url }}" alt="">
-        <p><span>Lake Name:</span> {{ business.lake_name }}</p>
-        <p><span>City:</span> {{ business.city }}</p>
-        <p><span>Position:</span> {{ business.coordinates }}</p>
-        <p><span>Phone Number:</span> 0{{ business.phone_number }}</p>
-        <p><span>Location:</span> {{ business.location }}</p>
-        <p><span>Description:</span> {{ business.description }}</p>
-        <p><span>Owner Name:</span> {{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+        <p>Lake Name:<span>{{ business.lake_name }}</span></p>
+        <p>City:<span>{{ business.city }}</span></p>
+        <p>Position:<span>{{ business.coordinates }}</span></p>
+        <p>Phone Number:<span>0{{ business.phone_number }}</span></p>
+        <p>Location:<span>{{ business.location }}</span></p>
+        <p>Description:<span>{{ business.description }}</span></p>
+        <p>Owner Name:<span>{{ user_profile.first_name }} {{ user_profile.last_name }}</span> </p>
         {% if business.owner.pk == request.user.pk %}
             <div class="delete-edit-business-wrapper">
                 <a class="btn edit-business" href="#">Edit</a>
