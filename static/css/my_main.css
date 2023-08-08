@@ -32,6 +32,11 @@ div.main-container {
         flex: 1;
 }
 
+div.main-container.owner {
+        margin-top: 5rem;
+        row-gap: 5rem;
+}
+
 div.main-container.edit-profile {
         flex-direction: row;
         column-gap: 1.5rem;
@@ -198,15 +203,17 @@ div.missing_profile {
         row-gap: 2rem;
 }
 
-div.missing_profile a {
+div.missing_profile a,
+a.owner-private-page {
     text-decoration: none;
     color: #375d6f;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-shadow: 2px 2px 1px #abefef;
 }
 
-div.missing_profile a:hover {
+div.missing_profile a:hover,
+a.owner-private-page:hover {
     text-decoration: underline;
 }
 
@@ -329,8 +336,68 @@ div.delete-user p {
 }
 
 #business-show-container {
-        display: flex;
-        flex-direction: column;
-        row-gap: 1rem;
-        align-self: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-self: center;
+    width: 40%;
 }
+
+#business-show-container p {
+    /*align-self: center;*/
+}
+
+#business-show-container p span {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+a.owner-private-page {
+    text-decoration: none;
+    color: #375d6f;
+}
+
+#business-list-page {
+    align-self: center;
+    width: 80%;
+}
+
+div.delete-edit-business-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /*row-gap: 0.5rem;*/
+    /*margin-left: 1rem;*/
+}
+
+div.delete-edit-business-wrapper a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 30px;
+    text-decoration: none;
+}
+
+.btn.edit-business {
+    background-color: #375d6f;;
+}
+
+.btn.edit-business:hover {
+    box-shadow: 0 0 25px #375d6f;
+}
+
+.btn.delete-business {
+    background-color: #d40c33;;
+}
+
+.btn.delete-business:hover {
+    box-shadow: 0 0 25px #d40c33;
+}
+
+.img-lake-details {
+    width: 50%;
+    height: 50%;
+    align-self: center;
+}
+

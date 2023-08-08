@@ -2,12 +2,20 @@
 
 {% block content %}
     <div id="business-show-container">
-        <p><img src="{{ business.business_images.url }}" alt=""></p>
-        <p>{{ business.lake_name }}</p>
-        <p>{{ business.city }}</p>
-        <p>{{ business.coordinates }}</p>
-        <p>{{ business.location }}</p>
-        <p>{{ business.description }}</p>
-        <p>{{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+        <img class="img-lake-details" src="{{ business.business_images.url }}" alt="">
+        <p><span>Lake Name:</span> {{ business.lake_name }}</p>
+        <p><span>City:</span> {{ business.city }}</p>
+        <p><span>Position:</span> {{ business.coordinates }}</p>
+        <p><span>Phone Number:</span> 0{{ business.phone_number }}</p>
+        <p><span>Location:</span> {{ business.location }}</p>
+        <p><span>Description:</span> {{ business.description }}</p>
+        <p><span>Owner Name:</span> {{ user_profile.first_name }} {{ user_profile.last_name }}</p>
+        {% if business.owner.pk == request.user.pk %}
+            <div class="delete-edit-business-wrapper">
+                <a class="btn edit-business" href="#">Edit</a>
+                <a class="btn delete-business" href="{% url 'delete_business' business.slug %}">Delete</a>
+            </div>
+        {% endif %}
+
     </div>
 {% endblock %}

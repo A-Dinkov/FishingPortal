@@ -4,7 +4,8 @@
 #reset-password-page,
 #reset-password-confirm-page,
 #edit-profile-page,
-#create-business-page{
+#create-business-page,
+#create-competition-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +29,8 @@ div.reset-password-container,
 div.password-reset-done,
 div.reset-password-confirm-container,
 div.password-reset-complete,
-div.create-business-container{
+div.create-business-container,
+div.create-competition-container {
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
@@ -97,6 +99,11 @@ label {
     display: block;
     color: #0c8380;
     margin-bottom: 0.5rem;
+}
+textarea {
+    padding: 0.3rem;
+    border-radius: 8px;
+    border: none;
 }
 
 #id_email {
@@ -259,5 +266,9 @@ div.bio-pic {
     display: flex;
     flex-direction: column;
     align-self: center;
+}
+
+.btn.create-competition-btn {
+    width: 60%;
 }
 

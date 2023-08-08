@@ -38,7 +38,7 @@ class CustomUserAdmin(UserAdmin):
     form = RegularUserChangeForm
     add_form = RegularUserCreationForm
     change_password_form = CustomAdminPasswordChangeForm
-    list_display = ("email", "is_staff")
+    list_display = ("email", "is_staff", "is_active", "is_regular_user", "is_owner")
     list_filter = ("is_staff", "is_superuser", "is_active", "is_owner", "groups")
     search_fields = ("email",)
     ordering = ("email",)

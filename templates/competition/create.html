@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block content %}
+    <section id="create-competition-page">
+        <form id="create-competition" action="{% url 'create_competition' %}" method="post" enctype="multipart/form-data">
+            <div class="create-competition-container">
+                <h2>Competition Creation Form</h2>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn create-competition-btn" type="submit">Create Competition</button>
+            </div>
+
+        </form>
+    </section>
+
+{% endblock %}

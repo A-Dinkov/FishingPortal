@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('FishingPortal.auth_app.urls')),
     path('', include('FishingPortal.common.urls')),
     path('business/', include('FishingPortal.business.urls')),
+    path('competition/', include('FishingPortal.competition.urls')),
 
 ]

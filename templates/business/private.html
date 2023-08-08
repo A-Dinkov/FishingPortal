@@ -8,13 +8,22 @@
                     <tr>
                         <th>Lake Name</th>
                         <th>City</th>
+                        <th>Phone Number</th>
+                        <th>Picture</th>
                     </tr>
                 </thead>
                 <tbody>
-                {% for business in object_list %}
+                {% for business in request.user.owned_businesses.all %}
                     <tr>
-                        <td>{{ business.lake_name }}</td>
+                        <td id="lake-name-box">
+                            <div id="lake-name-container">
+                                <a href="{% url 'business_details' business.slug %}">{{ business.lake_name }}</a>
+                            </div>
+                        </td>
                         <td>{{ business.city }}</td>
+                        <td>0{{ business.phone_number }}</td>
+                        <td><img src="{{ business.business_images.url }}" alt=""></td>
+
                     </tr>
                 {% endfor %}
                 </tbody>

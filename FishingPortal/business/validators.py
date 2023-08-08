@@ -20,3 +20,20 @@ class ValidateIsAlAlphaNumHypAndUnderscore:
 
     def __eq__(self, other):
         return True
+
+
+@deconstructible
+class ValidateNuberOfDigits:
+
+    def __call__(self, value):
+        count = 0
+        while value > 0:
+            count += 1
+
+            value = value // 10
+
+        if count != 9:
+            raise ValidationError('Phone number must be 9 digits')
+
+    def __eq__(self, other):
+        return True

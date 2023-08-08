@@ -4,7 +4,6 @@
 
 
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <title>Fishing Portal</title>
 </head>
@@ -39,12 +39,11 @@
                             {% if request.user.is_owner %}
                                 {% if request.user.is_superuser or request.user.is_staff %}
                                     <li><a class="button" href="{% url 'admin:index' %}">ADMIN</a></li>
-                                    <li><a class="button" href="{% url 'private_page' %}">SHOW BUSINESS</a></li>
                                     <li><a class="button" href="#">LAKES</a></li>
                                     <li><a class="button" href="#">COMPETITIONS</a></li>
                                 {% else %}
-                                    <li><a class="button" href="{% url 'about' %}">ABOUT</a></li>
-                                    <li><a class="button" href="{% url 'private_page' %}">SHOW BUSINESS</a></li>
+                                    <li><a class="button" href="{% url 'create_competition' %}">SET COMPETITION</a></li>
+                                    <li><a class="button" href="{% url 'create_business' %}">ADD BUSINESS</a></li>
                                     <li><a class="button" href="#">LAKES</a></li>
                                     <li><a class="button" href="#">COMPETITIONS</a></li>
                                 {% endif %}
@@ -79,7 +78,6 @@
                                     <li><a class="button" href="#">LAKES</a></li>
                                     <li><a class="button" href="#">COMPETITIONS</a></li>
                                 {% else %}
-                                    <li><a class="button" href="{% url 'private_page' %}">SHOW BUSINESS</a></li>
                                     <li><a class="button" href="{% url 'create_business' %}">ADD BUSINESS</a></li>
                                     <li><a class="button" href="#">LAKES</a></li>
                                     <li><a class="button" href="#">COMPETITIONS</a></li>
@@ -132,5 +130,8 @@
         </div>
     </footer>
     <script src="{% static 'js/messages.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="{% static 'js/date_time_picker.js' %}"></script>
 </body>
 </html>

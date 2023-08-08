@@ -6,9 +6,17 @@
     {% if request.user.is_authenticated %}
 
         {% if user_profile %}
-            <div class="main-container">
-                <h1>Welcome to your Fishing Portal</h1>
-            </div>
+            {% if request.user.is_owner %}
+                <div class="main-container owner">
+                    <h1>Welcome to your Fishing Portal</h1>
+                    <a class="owner-private-page" href="{% url 'private_page' %}">Your Space</a>
+                </div>
+            {% else %}
+                <div class="main-container">
+                    <h1>Welcome to your Fishing Portal</h1>
+                </div>
+            {% endif %}
+
 
         {% else %}
             <div class="main-container">

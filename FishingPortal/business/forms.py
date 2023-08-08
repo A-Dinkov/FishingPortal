@@ -7,12 +7,13 @@ class BusinessCreationForm(forms.ModelForm):
 
     class Meta:
         model = Business
-        fields = ('lake_name', 'city', 'coordinates', 'location', 'description', 'business_images')
+        fields = ('lake_name', 'city', 'coordinates', 'phone_number', 'location', 'description', 'business_images')
 
         labels = {
             'lake_name': '',
             'city': '',
             'coordinates': '',
+            'phone_number': '',
             'location': '',
             'description': '',
         }
@@ -34,6 +35,10 @@ class BusinessCreationForm(forms.ModelForm):
                 attrs={
                     'placeholder': 'Enter coordinates in format: 41.40338, 2.17403'
                 }
+            ),
+
+            'phone_number': forms.NumberInput(
+                attrs={'placeholder': 'Mobile phone number(example: 0999112233)'}
             ),
 
             'location': forms.Textarea(

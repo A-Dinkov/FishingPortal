@@ -8,6 +8,6 @@ from FishingPortal.business.models import Business
 class BusinessAdmin(admin.ModelAdmin):
     form = BusinessCreationForm
 
-    list_display = ('lake_name', 'city', )
-    list_filter = ('lake_name', 'city')
+    list_display = ('lake_name', 'city', 'phone_number')
+    list_filter = ('lake_name', 'city', 'phone_number')
 

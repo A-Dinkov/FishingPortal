@@ -5,8 +5,7 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 from FishingPortal.auth_app.validators import ValidateImageSize, ValidateIsOnlyAlpha
-from FishingPortal.business.validators import ValidateIsAlAlphaNumHypAndUnderscore
-
+from FishingPortal.business.validators import ValidateIsAlAlphaNumHypAndUnderscore, ValidateNuberOfDigits
 
 UserModel = get_user_model()
 
@@ -77,7 +76,20 @@ class Business(models.Model):
         )
     )
 
-    owner = models.ForeignKey(UserModel, on_delete=models.CASCADE,)
+    phone_number = models.PositiveIntegerField(
+        unique=True,
+        blank=True,
+        null=True,
+        validators=(
+            ValidateNuberOfDigits(),
+        )
+    )
+
+    owner = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+        related_name='owned_businesses'
+    )
 
     slug = models.SlugField(
         unique=True,

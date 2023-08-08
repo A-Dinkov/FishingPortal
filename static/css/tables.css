@@ -1,0 +1,49 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #eae8e8;;
+    color: #375d6f;
+    text-align: center;
+    padding: 8px;
+
+}
+
+td {
+    border: 1px solid #dad5d5;;
+    padding: 8px;
+    text-align: center;
+
+}
+
+td a {
+    text-decoration: none;
+    color: #375d6f;
+}
+
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+
+div #lake-name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: #b9e5e2;
+    box-shadow: 0 0 20px 1px #4ac2ba;
+    border-radius: 8px;
+    width: 90px;
+    height: 25px;
+}
+div #lake-name-container:hover {
+    box-shadow: 0 0 18px 4px;
+}
