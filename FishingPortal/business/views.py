@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect
 from django.contrib.auth.models import Group
 from django.urls import reverse_lazy
 from django.views import generic as views
-from FishingPortal.business.forms import BusinessCreationForm
+from FishingPortal.business.forms import BusinessCreationForm, BusinessEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from .models import Business
@@ -35,6 +35,31 @@ class BusinessDetailView(LoginRequiredMixin, views.DetailView):
 class BusinessOwnerView(LoginRequiredMixin, views.ListView):
     template_name = 'business/private.html'
     model = Business
+
+    def get_queryset(self):
+        # This ensures that only the businesses owned by the user are fetched.
+        return get_list_or_404(Business, owner=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Get the list of businesses owned by the user.
+        user_businesses = self.get_queryset()
+
+        # Fetch related competitions for those businesses.
+        # This step is optional and depends on how you want to structure your data in the template.
+        # This creates a dictionary where the key is a business and the value is a list of its competitions.
+        business_competitions = {business: business.competitions.all() for business in user_businesses}
+
+        context['business_competitions'] = business_competitions
+        return context
+
+
+class EditBusinessView(LoginRequiredMixin, views.UpdateView):
+    model = Business
+    form_class = BusinessEditForm
+    template_name = 'business/edit.html'
+    success_url = reverse_lazy('private_page')
 
 
 class DeleteBusinessView(LoginRequiredMixin, views.DeleteView):

@@ -59,3 +59,30 @@ class BusinessCreationForm(forms.ModelForm):
             ),
 
         }
+
+
+class BusinessEditForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        fields = '__all__'
+        exclude = ('owner', 'slug')
+
+        widgets = {
+            'location': forms.Textarea(
+                attrs={
+                    'rows': 8,
+                    'cols': 40,
+                    'placeholder': 'Enter the location of the business. Make it easy for customer to reach you.'
+                }
+            ),
+
+            'description': forms.Textarea(
+                attrs={
+                    'rows': 8,
+                    'cols': 40,
+                    'placeholder': 'Shortly describe type of fishing. General requirements. '
+                                   'Additional services provided'
+                }
+            ),
+        }
+

@@ -1,0 +1,21 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div id="competition-show-container">
+        <h2>Details</h2>
+        <p>Competition Name:<span>{{ competition.name }}</span></p>
+        <p>Place:<span>{{ competition.place }}</span></p>
+        <p>Date:<span>{{ competition.date }}</span></p>
+        <p>Organiser:<span>{{ competition.business.lake_name }}</span></p>
+        <p>Organiser Name:<span>{{ user_profile.first_name }} {{ user_profile.last_name }}</span> </p>
+        <p>Description:<span>{{ competition.description }}</span></p>
+
+        {% if competition.business.owner.pk == request.user.pk %}
+            <div class="delete-edit-competition-wrapper">
+                <a class="btn edit-competition" href="{% url 'edit_competition' competition.slug %}">Edit</a>
+                <a class="btn delete-competition" href="{% url 'delete_competition' competition.slug %}">Delete</a>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

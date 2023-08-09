@@ -5,7 +5,9 @@
 #reset-password-confirm-page,
 #edit-profile-page,
 #create-business-page,
-#create-competition-page {
+#create-competition-page,
+#edit-business-page,
+#edit-competition-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,13 +32,25 @@ div.password-reset-done,
 div.reset-password-confirm-container,
 div.password-reset-complete,
 div.create-business-container,
-div.create-competition-container {
+div.create-competition-container,
+div.edit-business-container,
+div.edit-competition-container {
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
 }
 
-div.create-business-container {
+div.edit-business-container {
+    flex-direction: row;
+    column-gap: 1rem;
+}
+
+div.edit-business-image input:nth-child(2), label:nth-child(3) {
+    display: none;
+}
+
+div.create-business-container,
+div.edit-business-container{
     row-gap: 1rem;
 }
 
@@ -297,4 +311,60 @@ div.create-business-container p:nth-child(8) label {
 
 div.create-business-container p:nth-child(8) input {
     width: 65%;
+}
+
+#edit-business-page {
+    width: 70vh;
+}
+
+div.left-wrapper-edit-business,
+div.right-wrapper-edit-business {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+div.left-wrapper-edit-business {
+    row-gap: 2.9rem;
+}
+
+div.edit-business-image {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+    align-self: flex-start;
+}
+
+div.edit-business-image input:nth-child(5) {
+    padding: 0;
+}
+
+
+#edit-business,
+div.delete-business {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+}
+
+div.delete-business {
+    row-gap: 2rem;
+    margin-top: 5rem;
+}
+
+.btn.delete-business-input {
+    width: 150px;
+}
+
+div.errors-edit-business {
+    margin-bottom: 0.5rem;
+    background-color: #f1e0e0;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+div.errors-edit-business ul li span {
+    font-weight: bold;
+    margin-right: 0.5rem;
 }

@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.urls import reverse
 from django.utils import timezone
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 from FishingPortal.business.models import Business
@@ -69,6 +70,9 @@ class Competition(models.Model):
             name = '-'.join(lower_case_name)
             self.slug = slugify(f'{self.pk}-{name}')
         return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('competition_detail', kwargs={'slug': self.slug})
 
     def __str__(self):
         return self.name

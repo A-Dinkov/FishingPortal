@@ -1,6 +1,16 @@
 table {
     width: 100%;
+    max-height: 100%;
     border-collapse: collapse;
+    border-radius: 8px;
+
+}
+
+caption {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    border: 1px solid #dad5d5;
+    background-color: #b9e5e2;
 }
 
 th {
@@ -15,7 +25,6 @@ td {
     border: 1px solid #dad5d5;;
     padding: 8px;
     text-align: center;
-
 }
 
 td a {
@@ -33,16 +42,26 @@ tr:hover {
 }
 
 
-div #lake-name-container {
+div #lake-name-container,
+div #competition-name-container {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
     background-color: #b9e5e2;
-    box-shadow: 0 0 20px 1px #4ac2ba;
+    box-shadow: 5px 4px 10px 4px #a3aaaa;
     border-radius: 8px;
-    width: 40%;
+    min-width: 65%;
+    width: 70%;
 }
-div #lake-name-container:hover {
-    box-shadow: 0 0 18px 4px;
+div #lake-name-container:hover,
+div #competition-name-container:hover{
+    box-shadow: 0 0 16px 3px #0c8380;
+}
+
+div.table-wrapper {
+    width: 100%;
+    box-shadow: 5px 4px 10px 8px #a3aaaa;
+    border-radius: 8px;
+    overflow: hidden;
 }

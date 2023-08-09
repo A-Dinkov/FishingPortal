@@ -1,0 +1,40 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <section id="edit-business-page">
+        {% if form.errors %}
+        <div class="errors-edit-business">
+            <h3>Validation error:</h3>
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li><span>{{ field }}:</span> {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+        <form id="edit-business" action="{% url 'edit_business' business.slug %}" method="post" enctype="multipart/form-data">
+            <div class="edit-business-container">
+                {% csrf_token %}
+                <div class="left-wrapper-edit-business">
+                    {{ form.lake_name }}
+                    {{ form.city }}
+                    {{ form.coordinates }}
+                    {{ form.phone_number }}
+                </div>
+                <div class="right-wrapper-edit-business">
+                    {{ form.location }}
+                    {{ form.description }}
+
+                </div>
+            </div>
+            <div class="edit-business-image">
+                {{ form.business_images }}
+            </div>
+            <button class="btn" type="submit">Edit Business</button>
+        </form>
+
+    </section>
+
+{% endblock %}

@@ -9,7 +9,7 @@ class CompetitionCreationForm(forms.ModelForm):
         if user:
             self.fields['business'].queryset = Business.objects.filter(owner=user)
 
-    business = forms.ModelChoiceField(queryset=Business.objects.none())  # Set an empty default queryset
+    business = forms.ModelChoiceField(queryset=Business.objects.none())
 
     class Meta:
         model = Competition
@@ -38,8 +38,11 @@ class CompetitionCreationForm(forms.ModelForm):
             'description': forms.Textarea(
                 attrs={'placeholder': 'Additional info', 'rows': 5, 'cols': 40}
             ),
-
-
         }
 
+
+class CompetitionEditForm(forms.ModelForm):
+    class Meta:
+        model = Competition
+        fields = ('date', 'description',)
 

@@ -16,11 +16,13 @@
                 <p id="bio">Bio</p>
                 <p>{{ user_profile.bio }}</p>
             </div>
+            {% if requested.user.userprofile == userprofile %}
+                <div id="profile_links">
+                    <a class="edit-profile-btn" href="{% url 'edit_profile' user.pk %}">Edit</a>
+                    <a class="delete-profile-btn" href="{% url 'delete_user' user.pk %}">Delete</a>
+                </div>
+            {% endif %}
 
-            <div id="profile_links">
-                <a href="{% url 'edit_profile' user.pk %}">Edit</a>
-                <a href="{% url 'delete_user' user.pk %}">Delete</a>
-            </div>
 
         </div>
 
