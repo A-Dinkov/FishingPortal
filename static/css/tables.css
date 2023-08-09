@@ -60,8 +60,9 @@ div #competition-name-container:hover{
 }
 
 div.table-wrapper {
-    width: 100%;
+    width: 95%;
     box-shadow: 5px 4px 10px 8px #a3aaaa;
     border-radius: 8px;
     overflow: hidden;
+    align-self: center;
 }

@@ -8,6 +8,7 @@ from FishingPortal.business.forms import BusinessCreationForm, BusinessEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from .models import Business
+from ..competition.models import Competition
 
 UserModel = get_user_model()
 
@@ -81,7 +82,6 @@ class DeleteBusinessView(LoginRequiredMixin, views.DeleteView):
         # Call the DeleteView's post method and delete the object
         response = super().post(request, *args, **kwargs)
 
-        # Get the user
         user = request.user
 
         # Check if the user has no more businesses
@@ -95,14 +95,19 @@ class DeleteBusinessView(LoginRequiredMixin, views.DeleteView):
             regular_users_group = get_object_or_404(Group, name='RegularUsers')
             user.groups.add(regular_users_group)
 
-            # Change the user's flags
             user.is_owner = False
             user.is_regular_user = True
 
-            # Save the changes to the user
             user.save()
 
         return response
+
+
+class LakesListDisplayView(LoginRequiredMixin, views.ListView):
+    model = Business
+    template_name = 'business/lakes_list.html'
+    context_object_name = 'businesses'
+    paginate_by = 5
 
 
 

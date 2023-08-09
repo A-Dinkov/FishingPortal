@@ -1,0 +1,67 @@
+{% extends 'common/base.html' %}
+{% block content %}
+    <div class="table-wrapper">
+        <table>
+            <caption>Up Coming Competitions</caption>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Place</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for competition in competitions %}
+                    <tr>
+                        {% if competition.is_active %}
+                            <td id="competition-name-box">
+                                <div id="competition-name-container">
+                                    <a href="{% url 'competition_details' competition.slug %}">{{ competition.name }}</a>
+                                </div>
+                            </td>
+                            <td>{{ competition.place }}</td>
+                            <td>{{ competition.date }}</td>
+                            <td>
+                                <div id="signup-link">
+                                    {% if user.is_authenticated %}
+                                        {% if user == competition.business.owner %}
+                                            <span>You are the owner of this competition.</span>
+                                        {% elif user not in competition.participants.all %}
+                                            <a href="{% url 'signup_for_competition' competition.slug %}">Sign up for this competition</a>
+                                        {% else %}
+                                            <span>You're already signed up for this competition!
+                                                <a id="sign-off-link" href="{% url 'sign_off_from_competition' competition.slug %}">
+                                                    Do you want to Sign Off</a></span>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="{% url 'login' %}">Login to sign up for this competition</a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock %}

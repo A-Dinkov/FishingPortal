@@ -1,9 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
+
+from FishingPortal.auth_app.models import UserProfile
 from FishingPortal.competition.forms import CompetitionCreationForm, CompetitionEditForm
 from FishingPortal.competition.models import Competition
 
@@ -57,8 +60,13 @@ class CompetitionDeleteView(LoginRequiredMixin, views.DeleteView):
 
 
 @login_required
-def signup_for_competition(request, competition_slug):
-    competition = get_object_or_404(Competition, slug=competition_slug)
+def signup_for_competition(request, slug):
+    competition = get_object_or_404(Competition, slug=slug)
+
+    has_profile = hasattr(request.user, 'userprofile')
+    if not has_profile:
+        messages.error(request, 'You need to create a profile first before signing up for a competition.')
+        return redirect('create_profile')
 
     if request.user in competition.participants.all():
         messages.info(request, 'You are already signed up for this competition.')
@@ -67,4 +75,52 @@ def signup_for_competition(request, competition_slug):
         competition.save()
         messages.success(request, 'Successfully signed up for the competition!')
 
-    return redirect(competition.get_absolute_url())
+    return redirect('list_competitions')
+
+
+@login_required
+def sign_off_from_competition(request, slug):
+    competition = get_object_or_404(Competition, slug=slug)
+
+    if request.user in competition.participants.all():
+        competition.participants.remove(request.user)
+        competition.save()
+        messages.success(request, 'Successfully signed off from the competition!')
+    else:
+        messages.info(request, 'You are not signed up for this competition.')
+
+    return redirect('list_competitions')
+
+
+class CompetitionsListDisplayView(LoginRequiredMixin, views.ListView):
+    model = Competition
+    template_name = 'competition/competition_list.html'
+    context_object_name = 'competitions'
+    paginate_by = 5
+
+
+class ParticipantsListDisplayView(CompetitionDetailsView):
+    template_name = 'competition/participants_list.html'
+    context_object_name = 'competition'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return super().get_queryset().prefetch_related('participants__userprofile')
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        competition = self.get_object()
+        participants = competition.participants.all()
+
+        paginator = Paginator(participants, self.paginate_by)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['page_obj'] = page_obj
+        context['paginator'] = paginator
+        return context
+
+
+
+
+

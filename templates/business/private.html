@@ -39,6 +39,7 @@
                         <th>Name</th>
                         <th>Place</th>
                         <th>Date</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,7 +55,17 @@
                                 <td>{{ competition.date }}</td>
                                 <td>
                                     <div id="signup-link">
-                                        <a href="">Sign Up</a>
+                                        {% if user.is_authenticated %}
+                                            {% if user == competition.business.owner %}
+                                                <span>You are the owner of this competition.</span>
+                                            {% elif user not in competition.participants.all %}
+                                                <a href="{% url 'signup_for_competition' competition.slug %}">Sign up for this competition</a>
+                                            {% else %}
+                                                <span>You're already signed up for this competition!</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <a href="{% url 'login' %}">Login to sign up for this competition</a>
+                                        {% endif %}
                                     </div>
                                 </td>
                             </tr>

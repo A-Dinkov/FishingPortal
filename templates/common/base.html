@@ -39,13 +39,13 @@
                             {% if request.user.is_owner %}
                                 {% if request.user.is_superuser or request.user.is_staff %}
                                     <li><a class="button" href="{% url 'admin:index' %}">ADMIN</a></li>
-                                    <li><a class="button" href="#">LAKES</a></li>
-                                    <li><a class="button" href="#">COMPETITIONS</a></li>
+                                    <li><a class="button" href="{% url 'list_lakes'%}">LAKES</a></li>
+                                    <li><a class="button" href="{% url 'list_competitions' %}">COMPETITIONS</a></li>
                                 {% else %}
                                     <li><a class="button" href="{% url 'create_competition' %}">SET COMPETITION</a></li>
                                     <li><a class="button" href="{% url 'create_business' %}">ADD BUSINESS</a></li>
-                                    <li><a class="button" href="#">LAKES</a></li>
-                                    <li><a class="button" href="#">COMPETITIONS</a></li>
+                                    <li><a class="button" href="{% url 'list_lakes'%}">LAKES</a></li>
+                                    <li><a class="button" href="{% url 'list_competitions' %}">COMPETITIONS</a></li>
                                 {% endif %}
                                 {% if user_profile %}
                                     <li id="profile-created">Hi, <span>{{ user_profile.first_name }}</span></li>
@@ -76,11 +76,11 @@
                                     <li><a class="button" href="{% url 'admin:index' %}">ADMIN</a></li>
                                     <li><a class="button" href="{% url 'create_business' %}">ADD BUSINESS</a></li>
                                     <li><a class="button" href="#">LAKES</a></li>
-                                    <li><a class="button" href="#">COMPETITIONS</a></li>
+                                    <li><a class="button" href="{% url 'list_competitions' %}">COMPETITIONS</a></li>
                                 {% else %}
                                     <li><a class="button" href="{% url 'create_business' %}">ADD BUSINESS</a></li>
-                                    <li><a class="button" href="#">LAKES</a></li>
-                                    <li><a class="button" href="#">COMPETITIONS</a></li>
+                                    <li><a class="button" href="{% url 'list_lakes'%}">LAKES</a></li>
+                                    <li><a class="button" href="{% url 'list_competitions' %}">COMPETITIONS</a></li>
                                 {% endif %}
                                 {% if user_profile %}
                                     <li id="profile-created">Hi, <span>{{ user_profile.first_name }}</span></li>

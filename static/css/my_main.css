@@ -361,11 +361,19 @@ div.delete-competition input {
     flex-direction: column;
     row-gap: 1rem;
     align-self: center;
-    width: 40%;
+    /*width: 100%;*/
     padding: 0.5rem;
     border-radius: 8px;
     background-color: #b9e5e2;
     box-shadow: 5px 4px 10px 8px #a3aaaa;
+}
+
+#business-show-container {
+    width: 40%;
+}
+
+#competition-show-container{
+    width: 100%;
 }
 
 
@@ -424,12 +432,11 @@ div.delete-edit-competition-wrapper a{
     box-shadow: 0 0 25px #d40c33;
 }
 
-.img-lake-details {
+img.img-lake-details {
     width: 40%;
     height: 40%;
     align-self: center;
-    border-radius: 8px;
-
+    border-radius: 10px;
 }
 
 #business-list-page {
@@ -446,4 +453,63 @@ div.business-show-inner-container {
     row-gap: 0.5rem;
     width: 90%;
     align-self: center;
+}
+
+div.pagination {
+    align-self: center;
+    margin-top: 1rem;
+}
+
+div.participant-list-link,
+div.img-lake-details-wrapper a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    background-color: #375d6f;
+    box-shadow: 2px 4px 8px 3px #646262;
+    border-radius: 8px;
+    width: 300px;
+    height: 30px;
+}
+
+div.participant-list-link:hover {
+    width: 310px;
+    height: 35px;
+    box-shadow: 0 0 8px 6px #646262;
+}
+
+div.participant-list-link a,
+div.img-lake-details-wrapper a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+div.competition-show-wrapper-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 2rem;
+    margin: auto;
+    width: 40%;
+}
+
+#sign-off-link {
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: #4d9bbf;
+    padding: 0.2rem;
+    border-radius: 8px;
+    margin-left: 2rem;
+}
+
+#sign-off-link:hover {
+    box-shadow: 0 0 6px 2px #375d6f;
+}
+
+#participant-info {
+    text-decoration: underline;
 }

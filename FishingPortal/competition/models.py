@@ -54,7 +54,7 @@ class Competition(models.Model):
         blank=True
     )
 
-    active = models.BooleanField(
+    is_active = models.BooleanField(
         default=True,
     )
 
