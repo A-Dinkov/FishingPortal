@@ -1,0 +1,23 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="adventure-details-wrapper-outer">
+        <div id="adventure-details-container">
+            <h2>Adventure Details</h2>
+            <p>Adventure Name:<span>{{ adventure.name }}</span></p>
+            <p>Place:<span>{{ adventure.place }}</span></p>
+            <p>Date:<span>{{ adventure.date }}</span></p>
+            <p>Fisherman<span>{{ user_profile.first_name }} {{ user_profile.last_name }}</span> </p>
+            <p>Description:<span>{{ adventure.description }}</span></p>
+            {% if adventure.adventurer.pk == request.user.pk %}
+            <div class="delete-edit-adventure-wrapper">
+                <a class="btn edit-adventure" href="{% url 'edit_adventure' adventure.slug %}">Edit</a>
+                <a class="btn delete-adventure" href="{% url 'delete_adventure' adventure.slug %}">Delete</a>
+            </div>
+        {% endif %}
+        </div>
+
+
+    </div>
+
+{% endblock %}

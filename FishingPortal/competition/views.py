@@ -94,13 +94,13 @@ def sign_off_from_competition(request, slug):
 
 class CompetitionsListDisplayView(LoginRequiredMixin, views.ListView):
     model = Competition
-    template_name = 'competition/competition_list.html'
+    template_name = 'competition/competition-list.html'
     context_object_name = 'competitions'
     paginate_by = 5
 
 
 class ParticipantsListDisplayView(CompetitionDetailsView):
-    template_name = 'competition/participants_list.html'
+    template_name = 'competition/participants-list.html'
     context_object_name = 'competition'
     paginate_by = 5
 

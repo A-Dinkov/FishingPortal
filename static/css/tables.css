@@ -59,10 +59,41 @@ div #competition-name-container:hover{
     box-shadow: 0 0 16px 3px #0c8380;
 }
 
-div.table-wrapper {
+.table-wrapper {
     width: 95%;
     box-shadow: 5px 4px 10px 8px #a3aaaa;
     border-radius: 8px;
     overflow: hidden;
     align-self: center;
+}
+
+#my-competitions, #my-adventures {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-self: flex-start;
+}
+
+
+div.main-container.regular-private {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+div.regular-outer-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+    width: 47%;
+}
+
+
+#adventure-details-link{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+div.main-container.regular-private {
+
 }

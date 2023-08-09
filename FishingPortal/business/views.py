@@ -29,31 +29,6 @@ class BusinessCreateView(LoginRequiredMixin, CreateView):
 class BusinessDetailView(LoginRequiredMixin, views.DetailView):
     model = Business
     template_name = 'business/details.html'
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
-
-
-class BusinessOwnerView(LoginRequiredMixin, views.ListView):
-    template_name = 'business/private.html'
-    model = Business
-
-    def get_queryset(self):
-        # This ensures that only the businesses owned by the user are fetched.
-        return get_list_or_404(Business, owner=self.request.user)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # Get the list of businesses owned by the user.
-        user_businesses = self.get_queryset()
-
-        # Fetch related competitions for those businesses.
-        # This step is optional and depends on how you want to structure your data in the template.
-        # This creates a dictionary where the key is a business and the value is a list of its competitions.
-        business_competitions = {business: business.competitions.all() for business in user_businesses}
-
-        context['business_competitions'] = business_competitions
-        return context
 
 
 class EditBusinessView(LoginRequiredMixin, views.UpdateView):
@@ -105,7 +80,7 @@ class DeleteBusinessView(LoginRequiredMixin, views.DeleteView):
 
 class LakesListDisplayView(LoginRequiredMixin, views.ListView):
     model = Business
-    template_name = 'business/lakes_list.html'
+    template_name = 'business/lakes-list.html'
     context_object_name = 'businesses'
     paginate_by = 5
 

@@ -40,7 +40,7 @@ class RegisterUser(AnonymousUserOnlyMixin, SuccessMessageMixin, auth_views.Creat
 class UserProfileCreateView(LoginRequiredMixin, auth_views.CreateView):
     model = UserProfile
     form_class = ProfileCreationForm
-    template_name = 'auth_app/create_profile.html'
+    template_name = 'auth_app/create-profile.html'
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -64,7 +64,7 @@ class ShowProfile(LoginRequiredMixin, auth_views.DetailView):
             return render(request, self.template_name, context)
         except UserProfile.DoesNotExist:
             # If the UserProfile does not exist, display a custom message
-            return render(request, 'auth_app/profile_not_exist.html')
+            return render(request, 'auth_app/profile-not-exist.html')
 
 
 class UpdateUserProfileView(LoginRequiredMixin, auth_views.UpdateView):
@@ -98,7 +98,7 @@ class ShowUserList(LoginRequiredMixin, auth_views.ListView):
 
 class DeleteUser(LoginRequiredMixin, auth_views.DeleteView):
     model = RegularUser
-    template_name = 'auth_app/delete_user.html'
+    template_name = 'auth_app/delete-user.html'
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -121,4 +121,4 @@ class AppPasswordResetConfirmView(PasswordResetConfirmView):
 
 
 class AppPasswordResetCompleteView(PasswordResetCompleteView):
-    template_name = 'auth_app/password_reset_complete.html'
+    template_name = 'auth_app/password-reset-complete.html'

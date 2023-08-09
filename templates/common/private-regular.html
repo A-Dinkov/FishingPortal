@@ -1,0 +1,102 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="main-container regular-private">
+        <div class="regular-outer-wrapper">
+            <section id="my-adventures">
+                <div class="table-wrapper my-adventures">
+                    <table>
+                        <caption>My Adventures</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Place</th>
+                                <th>Date</th>
+                                <th>More Info</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for adventure in user_adventures %}
+                            <tr>
+                                <td>{{ adventure.name }}</td>
+                                <td>{{ adventure.place }}</td>
+                                <td>{{ adventure.date }}</td>
+                                <td><a id="adventure-details-link" href="{% url 'adventure_details' adventure.slug %}">Details</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </section>
+            <section id="my-competitions">
+                <div class="table-wrapper my-competitions">
+                    <table>
+                        <caption>My Competitions</caption>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Place</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for competition in user_competitions %}
+                                <tr>
+                                    <td id="competition-name-box">
+                                        <div id="competition-name-container">
+                                            <a href="{% url 'competition_details' competition.slug %}">{{ competition.name }}</a>
+                                        </div>
+                                    </td>
+                                    <td>{{ competition.place }}</td>
+                                    <td>{{ competition.date }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">next</a>
+                            <a href="?page={{ paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </section>
+        </div>
+
+        <section id="more-links">
+            <div class="more-links-wrapper">
+                <h1>My very long title to hold the line </h1>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+

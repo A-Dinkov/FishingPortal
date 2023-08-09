@@ -7,7 +7,9 @@
 #create-business-page,
 #create-competition-page,
 #edit-business-page,
-#edit-competition-page {
+#edit-competition-page,
+#create-adventure-page,
+#edit-adventure-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,7 +36,9 @@ div.password-reset-complete,
 div.create-business-container,
 div.create-competition-container,
 div.edit-business-container,
-div.edit-competition-container {
+div.edit-competition-container,
+div.create-adventure-container,
+div.edit-adventure-container {
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
@@ -121,6 +125,7 @@ textarea {
     width: 100%;
 }
 
+
 #id_email {
     margin-top: 1rem;
 }
@@ -135,6 +140,11 @@ input,
 
 input {
     padding: 0.5rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #b2b5b7;
 }
 
 .btn {
@@ -367,4 +377,8 @@ div.errors-edit-business {
 div.errors-edit-business ul li span {
     font-weight: bold;
     margin-right: 0.5rem;
+}
+
+div.create-adventure-container h2 {
+    align-self: center;
 }

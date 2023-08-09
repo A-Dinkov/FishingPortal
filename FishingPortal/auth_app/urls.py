@@ -15,8 +15,8 @@ urlpatterns = [
     path('create_profile/', UserProfileCreateView.as_view(), name='create_profile'),
     path('profile/<int:pk>/', ShowProfile.as_view(), name='profile'),
     path('profile_not_exist/', views.TemplateView.as_view(
-        template_name='auth_app/profile_not_exist.html'),
-        name='profile_not_exist'
+        template_name='auth_app/profile-not-exist.html'),
+         name='profile_not_exist'
          ),
     path('delete_user/<int:pk>', DeleteUser.as_view(), name='delete_user'),
     path('password_reset/', AppPasswordResetView.as_view(), name='password_reset'),

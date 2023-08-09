@@ -8,12 +8,14 @@
         {% if user_profile %}
             {% if request.user.is_owner %}
                 <div class="main-container owner">
+                    {% include 'common/private-owner.html' %}
                     <h1>Welcome to your Fishing Portal</h1>
-                    <a class="owner-private-page" href="{% url 'private_page' %}">Your Space</a>
+                    <a class="owner-private-page" href="{% url 'private_owner' %}">Your Space</a>
                 </div>
             {% else %}
                 <div class="main-container">
                     <h1>Welcome to your Fishing Portal</h1>
+                    <a class="regular-private-page" href="{% url 'private_regular' user.pk %}">Your Space</a>
                 </div>
             {% endif %}
 

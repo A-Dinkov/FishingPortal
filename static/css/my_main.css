@@ -216,7 +216,8 @@ div.missing_profile {
 }
 
 div.missing_profile a,
-a.owner-private-page {
+a.owner-private-page,
+a.regular-private-page{
     text-decoration: none;
     color: #375d6f;
     font-weight: bold;
@@ -225,7 +226,8 @@ a.owner-private-page {
 }
 
 div.missing_profile a:hover,
-a.owner-private-page:hover {
+a.owner-private-page:hover,
+a.regular-private-page:hover {
     text-decoration: underline;
 }
 
@@ -315,7 +317,8 @@ div #about-page-login-link a.btn:hover {
 }
 
 div.delete-user,
-div.delete-competition {
+div.delete-competition,
+div.delete-adventure {
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -329,7 +332,8 @@ div.delete-user p {
         font-size: 1.2rem;
 }
 
-div.delete-competition {
+div.delete-competition,
+div.delete-adventure  {
     margin-top: 5rem;
 }
 
@@ -356,7 +360,8 @@ div.delete-competition input {
 }
 
 #business-show-container,
-#competition-show-container {
+#competition-show-container,
+#adventure-details-container{
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
@@ -378,7 +383,8 @@ div.delete-competition input {
 
 
 #business-show-container p span,
-#competition-show-container p span {
+#competition-show-container p span,
+#adventure-details-container p span{
     font-weight: bold;
     margin-left: 0.5rem;
 }
@@ -395,7 +401,8 @@ a.owner-private-page {
 
 
 div.delete-edit-business-wrapper,
-div.delete-edit-competition-wrapper {
+div.delete-edit-competition-wrapper,
+div.delete-edit-adventure-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -403,7 +410,8 @@ div.delete-edit-competition-wrapper {
 }
 
 div.delete-edit-business-wrapper a,
-div.delete-edit-competition-wrapper a{
+div.delete-edit-competition-wrapper a,
+div.delete-edit-adventure-wrapper a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -413,22 +421,26 @@ div.delete-edit-competition-wrapper a{
 }
 
 .btn.edit-business,
-.btn.edit-competition {
+.btn.edit-competition,
+.btn.edit-adventure {
     background-color: #375d6f;;
 }
 
 .btn.edit-business:hover,
-.btn.edit-competition:hover{
+.btn.edit-competition:hover,
+.btn.edit-adventure:hover {
     box-shadow: 0 0 25px #375d6f;
 }
 
 .btn.delete-business,
-.btn.delete-competition {
+.btn.delete-competition,
+.btn.delete-adventure {
     background-color: #d40c33;;
 }
 
 .btn.delete-business:hover,
-.btn.delete-competition:hover {
+.btn.delete-competition:hover,
+.btn.delete-adventure:hover {
     box-shadow: 0 0 25px #d40c33;
 }
 
@@ -487,7 +499,8 @@ div.img-lake-details-wrapper a {
     color: whitesmoke;
 }
 
-div.competition-show-wrapper-outer {
+div.competition-show-wrapper-outer,
+div.adventure-details-wrapper-outer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -512,4 +525,21 @@ div.competition-show-wrapper-outer {
 
 #participant-info {
     text-decoration: underline;
+}
+
+#more-links {
+    background-color: #abefef;
+    width: 47%;
+    height: 75vh;
+    border-radius: 20px;
+    padding: 0.8rem;
+    box-shadow: 5px 8px 12px 6px #646262;
+}
+
+div.more-links-wrapper{
+    border-radius: 20px;
+    height: 100%;
+    padding: 1.2rem;
+    text-align: center;
+
 }
