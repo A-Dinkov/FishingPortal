@@ -26,5 +26,6 @@ urlpatterns = [
     path('business/', include('FishingPortal.business.urls')),
     path('competition/', include('FishingPortal.competition.urls')),
     path('adventure/', include('FishingPortal.adventure.urls')),
+    path('picture/', include('FishingPortal.picture.urls'))
 
 ]

@@ -18,6 +18,8 @@ class Competition(models.Model):
     PLACE_MIN_LENGTH = 2
     DESCRIPTION_MAX_LENGTH = 500
 
+    objects = models.Manager()
+
     name = models.CharField(
         validators=(
             MinLengthValidator(NAME_MIN_LENGTH),

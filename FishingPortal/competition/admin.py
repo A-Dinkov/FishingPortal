@@ -1,3 +1,11 @@
 from django.contrib import admin
+from FishingPortal.competition.forms import CompetitionCreationForm
+from FishingPortal.competition.models import Competition
 
-# Register your models here.
+
+@admin.register(Competition)
+class CompetitionAdmin(admin.ModelAdmin):
+    form = CompetitionCreationForm
+    list_display = ('name', 'place', 'date')
+    list_filter = ('name', 'place', 'date', 'business')
+

@@ -9,7 +9,8 @@
 #edit-business-page,
 #edit-competition-page,
 #create-adventure-page,
-#edit-adventure-page {
+#edit-adventure-page,
+#upload-photo-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,10 +39,30 @@ div.create-competition-container,
 div.edit-business-container,
 div.edit-competition-container,
 div.create-adventure-container,
-div.edit-adventure-container {
+div.edit-adventure-container,
+div.upload-photo-container{
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
+}
+
+div.upload-photo-container {
+    row-gap: 1rem;
+}
+
+div.upload-photo-container p {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+}
+
+div.upload-photo-container p:nth-child(3) label{
+    margin: 0;
+    align-self: center;
+}
+
+div.upload-photo-container p:nth-child(8) input {
+    align-self: center;
 }
 
 div.edit-business-container {
@@ -123,6 +144,9 @@ textarea {
     border-radius: 8px;
     border: none;
     width: 100%;
+}
+select {
+    border-radius: 8px;
 }
 
 

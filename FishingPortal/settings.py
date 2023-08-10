@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'FishingPortal.business',
     'FishingPortal.competition',
     'FishingPortal.adventure',
+    'FishingPortal.picture',
 ]
 
 MIDDLEWARE = [

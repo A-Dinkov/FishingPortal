@@ -17,7 +17,7 @@ class BusinessCreateView(LoginRequiredMixin, CreateView):
     model = Business
     form_class = BusinessCreationForm
     template_name = 'business/create.html'
-    success_url = reverse_lazy('private_page')
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         business = form.save(commit=False)
