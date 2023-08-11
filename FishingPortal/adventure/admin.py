@@ -9,3 +9,4 @@ class Adventure(admin.ModelAdmin):
     form = AdventureCreationForm
     list_display = ('name', 'place', 'date')
     list_filter = ('name', 'place', 'date')
+

@@ -1,9 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.contrib.contenttypes.models import ContentType
 from django.views import generic as views
 from django.shortcuts import reverse
 
+from FishingPortal.business.models import Like
 from FishingPortal.picture.filters import PictureFilter, PictureFilterPrivate
 from FishingPortal.picture.forms import UploadPictureForm, PhotoEditForm
 from FishingPortal.picture.models import Picture
@@ -98,6 +99,19 @@ class PhotoDetailView(LoginRequiredMixin, views.DetailView):
     model = Picture
     template_name = 'picture/details.html'
     context_object_name = 'photo'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Get the content type for Business objects
+        content_type = ContentType.objects.get_for_model(self.object)
+
+        # Query the Like model directly to get the count of likes for this Business object
+        likes_count = Like.objects.filter(content_type=content_type, object_id=self.object.id).count()
+
+        context['likes_count'] = likes_count
+
+        return context
 
 
 class PhotoEditView(LoginRequiredMixin, views.UpdateView):

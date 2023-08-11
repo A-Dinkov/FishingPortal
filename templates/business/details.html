@@ -11,7 +11,14 @@
             <p>Phone Number:<span>0{{ business.phone_number }}</span></p>
             <p>Location:<span>{{ business.location }}</span></p>
             <p>Description:<span>{{ business.description }}</span></p>
-            <p>Owner Name:<span>{{ user_profile.first_name }} {{ user_profile.last_name }}</span> </p>
+            <p>Owner Name:<span>{{ business.owner.userprofile.first_name }} {{ business.owner.userprofile.last_name }}</span> </p>
+            <h1>{{ business.name }}</h1>
+        </div>
+        <div class="likes-container">
+            <span id="likes-count">{{ likes_count }}</span>
+            <span id="likes">
+                <a href="{% url 'like_business' object_slug=business.slug %}"><i class="fa-solid fa-heart"></i>likes</a>
+            </span>
         </div>
         {% if business.owner.pk == request.user.pk %}
             <div class="delete-edit-business-wrapper">
@@ -22,3 +29,5 @@
 
     </div>
 {% endblock %}
+
+

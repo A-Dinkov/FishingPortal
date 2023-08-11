@@ -467,7 +467,7 @@ div.delete-edit-photo-wrapper a {
 
 .btn.edit-business,
 .btn.edit-competition,
-.btn.edit-adventure
+.btn.edit-adventure,
 .btn.edit-photo {
     background-color: #375d6f;;
 }
@@ -818,4 +818,30 @@ div.main-container.photos-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+div.likes-container {
+    display: flex;
+    flex-direction: row;
+    row-gap: 2px;
+    padding-left: 2rem;
+}
+
+div.likes-container.pictures {
+    padding: 0;
+}
+
+#likes, #likes-count {
+    display: inline-block;
+}
+
+#likes a {
+    margin-left: 0.3rem;
+    color: #375d6f;
+    text-decoration: none;
+}
+
+ #likes a i {
+    color: #375d6f;
+
 }

@@ -1,14 +1,15 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect
+from django.contrib.contenttypes.models import ContentType
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import Group
 from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from FishingPortal.business.forms import BusinessCreationForm, BusinessEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
-from .models import Business
-from ..competition.models import Competition
+from .models import Business, Like
+
 
 UserModel = get_user_model()
 
@@ -32,6 +33,19 @@ class BusinessCreateView(LoginRequiredMixin, CreateView):
 class BusinessDetailView(LoginRequiredMixin, views.DetailView):
     model = Business
     template_name = 'business/details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Get the content type for Business objects
+        content_type = ContentType.objects.get_for_model(self.object)
+
+        # Query the Like model directly to get the count of likes for this Business object
+        likes_count = Like.objects.filter(content_type=content_type, object_id=self.object.id).count()
+
+        context['likes_count'] = likes_count
+
+        return context
 
 
 class EditBusinessView(LoginRequiredMixin, views.UpdateView):
@@ -92,6 +106,7 @@ class LakesListDisplayView(LoginRequiredMixin, views.ListView):
     template_name = 'business/lakes-list.html'
     context_object_name = 'businesses'
     paginate_by = 5
+
 
 
 

@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.views import generic as views
-from django.shortcuts import render, get_list_or_404
-
+from django.shortcuts import get_list_or_404, get_object_or_404, redirect
 from FishingPortal.adventure.models import Adventure
-from FishingPortal.business.models import Business
+from FishingPortal.business.models import Business, Like
+from FishingPortal.picture.models import Picture
 
 UserModel = get_user_model()
 
@@ -13,7 +14,6 @@ UserModel = get_user_model()
 class RegularUserHomeView(LoginRequiredMixin, views.DetailView):
     model = UserModel
     template_name = 'common/private-regular.html'
-    # context_object_name = 'user_object'
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
@@ -60,3 +60,33 @@ class BusinessOwnerView(LoginRequiredMixin, views.ListView):
 
         context['business_competitions'] = business_competitions
         return context
+
+
+def like_object(request, model, object_slug):
+    # Get the model class based on the 'model' string
+    model_mapping = {
+        "business": {"class": Business, "redirect_view": "business_details"},
+        "photo": {"class": Picture, "redirect_view": "photo_details"}
+    }
+
+    if model not in model_mapping:
+        raise ValueError("Invalid model type")
+
+    model_class = model_mapping[model]["class"]
+
+    # Retrieve the object using the slug
+    obj = get_object_or_404(model_class, slug=object_slug)
+    content_type = ContentType.objects.get_for_model(obj)
+
+    # Check if the user has already liked this object
+    liked = Like.objects.filter(user=request.user, content_type=content_type, object_id=obj.id).exists()
+
+    if liked:
+        # If they have, unlike it by deleting the Like object
+        Like.objects.filter(user=request.user, content_type=content_type, object_id=obj.id).delete()
+    else:
+        # If they haven't, like it by creating a new Like object
+        Like.objects.create(user=request.user, content_object=obj)
+
+    # Redirect to the appropriate view based on the model type
+    return redirect(model_mapping[model]["redirect_view"], slug=object_slug)

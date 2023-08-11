@@ -9,6 +9,12 @@
             <p>{{ photo.upload_date }}</p>
             <p>{{ photo.uploader.userprofile.first_name }} {{ photo.uploader.userprofile.last_name }}</p>
         </div>
+        <div class="likes-container pictures">
+            <span id="likes-count">{{ likes_count }}</span>
+            <span id="likes">
+                <a href="{% url 'like_photo' object_slug=photo.slug %}"><i class="fa-solid fa-heart"></i>likes</a>
+            </span>
+        </div>
         {% if photo.uploader.pk == request.user.pk %}
             <div class="delete-edit-photo-wrapper">
                 <a class="btn edit-photo" href="{% url 'edit_photo' photo.slug %}">Edit</a>
