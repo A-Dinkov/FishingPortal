@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 
 from FishingPortal.auth_app.models import UserProfile
@@ -15,7 +15,10 @@ class CompetitionCreateView(LoginRequiredMixin, views.CreateView):
     model = Competition
     form_class = CompetitionCreationForm
     template_name = 'competition/create.html'
-    success_url = reverse_lazy('private_page')
+
+    def get_success_url(self):
+        user = self.request.user
+        return reverse('private_owner', args=[user.pk])
 
     def get_form_kwargs(self):
         kwargs = super(CompetitionCreateView, self).get_form_kwargs()
@@ -30,24 +33,26 @@ class CompetitionCreateView(LoginRequiredMixin, views.CreateView):
 class CompetitionDetailsView(LoginRequiredMixin, views.DetailView):
     model = Competition
     template_name = 'competition/details.html'
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
 
 
 class CompetitionEditView(LoginRequiredMixin, views.UpdateView):
     model = Competition
     form_class = CompetitionEditForm
     template_name = 'competition/edit.html'
-    success_url = reverse_lazy('private_page')
+
+    def get_success_url(self):
+        user = self.request.user
+        return reverse('private_owner', args=[user.pk])
 
 
 class CompetitionDeleteView(LoginRequiredMixin, views.DeleteView):
     model = Competition
     template_name = 'competition/delete.html'
     context_object_name = 'competition'
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
-    success_url = reverse_lazy('private_page')
+
+    def get_success_url(self):
+        user = self.request.user
+        return reverse('private_owner', args=[user.pk])
 
     def post(self, request, *args, **kwargs):
         response = super().post(request, *args, **kwargs)

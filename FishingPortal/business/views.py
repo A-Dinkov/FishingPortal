@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404, get_list_or_404, render, redirect
 from django.contrib.auth.models import Group
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 from FishingPortal.business.forms import BusinessCreationForm, BusinessEditForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,7 +17,10 @@ class BusinessCreateView(LoginRequiredMixin, CreateView):
     model = Business
     form_class = BusinessCreationForm
     template_name = 'business/create.html'
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        user = self.request.user
+        return reverse('private_owner', args=[user.pk])
 
     def form_valid(self, form):
         business = form.save(commit=False)
@@ -35,7 +38,10 @@ class EditBusinessView(LoginRequiredMixin, views.UpdateView):
     model = Business
     form_class = BusinessEditForm
     template_name = 'business/edit.html'
-    success_url = reverse_lazy('private_page')
+
+    def get_success_url(self):
+        user = self.request.user
+        return reverse('private_owner', args=[user.pk])
 
 
 class DeleteBusinessView(LoginRequiredMixin, views.DeleteView):
@@ -44,7 +50,10 @@ class DeleteBusinessView(LoginRequiredMixin, views.DeleteView):
     context_object_name = 'business'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
-    success_url = reverse_lazy('home')
+
+    def get_success_url(self):
+        user = self.request.user
+        return reverse('private_owner', args=[user.pk])
 
     def get_queryset(self):
         return self.request.user.owned_businesses.all()

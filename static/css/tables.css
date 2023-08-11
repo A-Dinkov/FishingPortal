@@ -11,6 +11,7 @@ caption {
     font-size: 1.2rem;
     border: 1px solid #dad5d5;
     background-color: #b9e5e2;
+    font-weight: bold;
 }
 
 th {
@@ -62,7 +63,7 @@ div #competition-name-container:hover{
 .table-wrapper {
     width: 95%;
     box-shadow: 5px 4px 10px 8px #a3aaaa;
-    border-radius: 8px;
+    border-radius: 15px;
     overflow: hidden;
     align-self: center;
 }
@@ -93,6 +94,7 @@ div.regular-outer-wrapper {
     font-weight: bold;
     text-decoration: underline;
 }
+
 
 div.main-container.regular-private {
 

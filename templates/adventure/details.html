@@ -7,7 +7,9 @@
             <p>Adventure Name:<span>{{ adventure.name }}</span></p>
             <p>Place:<span>{{ adventure.place }}</span></p>
             <p>Date:<span>{{ adventure.date }}</span></p>
-            <p>Fisherman<span>{{ user_profile.first_name }} {{ user_profile.last_name }}</span> </p>
+            <p>Fisherman<span>{{ adventure.adventurer.userprofile.first_name }}
+                {{ adventure.adventurer.userprofile.last_name }}
+                {{ adventure.adventurer.user_profile.last_name }}</span> </p>
             <p>Description:<span>{{ adventure.description }}</span></p>
             {% if adventure.adventurer.pk == request.user.pk %}
             <div class="delete-edit-adventure-wrapper">

@@ -13,7 +13,7 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background-color: whitesmoke;
+        background-color: #f5f5f5;
         color: #375d6f;
 }
 
@@ -22,6 +22,7 @@ div.base-main-container {
         flex-direction: column;
         margin-bottom: 1.5rem;
         margin-top: 110px;
+        height: 100%;
 }
 
 div.main-container {
@@ -35,6 +36,10 @@ div.main-container {
 div.main-container.owner {
         margin-top: 5rem;
         row-gap: 5rem;
+}
+
+div.main-container.home {
+   margin-top: 200px;
 }
 
 div.main-container.edit-profile {
@@ -323,6 +328,7 @@ div.delete-adventure {
         align-items: center;
         flex-direction: column;
         row-gap: 2rem;
+        margin-top: 8rem;
 }
 
 div.delete-user input.btn {
@@ -361,12 +367,12 @@ div.delete-competition input {
 
 #business-show-container,
 #competition-show-container,
-#adventure-details-container{
+#adventure-details-container,
+#photo-details-container {
     display: flex;
     flex-direction: column;
     row-gap: 1rem;
     align-self: center;
-    /*width: 100%;*/
     padding: 0.5rem;
     border-radius: 8px;
     background-color: #b9e5e2;
@@ -375,6 +381,33 @@ div.delete-competition input {
 
 #business-show-container {
     width: 40%;
+}
+
+#photo-details-container {
+    overflow: hidden;
+    width: 47vh;
+    height: 76vh;
+    position: relative;
+    row-gap: 1.5rem;
+}
+
+
+#photo-details-container img {
+    border-radius: 8px 8px 0 0;
+    display: block;
+    max-width: 100%;
+    max-height: 61%;
+    width: auto;
+    height: auto;
+}
+div.photo-details-inner-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+div.photo-details-inner-container p {
+    font-weight: bold;
 }
 
 #competition-show-container{
@@ -402,16 +435,27 @@ a.owner-private-page {
 
 div.delete-edit-business-wrapper,
 div.delete-edit-competition-wrapper,
-div.delete-edit-adventure-wrapper {
+div.delete-edit-adventure-wrapper,
+div.delete-edit-photo-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-
 }
+
+div.delete-edit-photo-wrapper {
+    display: flex;
+    column-gap: 4rem;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%);
+}
+
 
 div.delete-edit-business-wrapper a,
 div.delete-edit-competition-wrapper a,
-div.delete-edit-adventure-wrapper a {
+div.delete-edit-adventure-wrapper a,
+div.delete-edit-photo-wrapper a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -420,27 +464,32 @@ div.delete-edit-adventure-wrapper a {
     text-decoration: none;
 }
 
+
 .btn.edit-business,
 .btn.edit-competition,
-.btn.edit-adventure {
+.btn.edit-adventure
+.btn.edit-photo {
     background-color: #375d6f;;
 }
 
 .btn.edit-business:hover,
 .btn.edit-competition:hover,
-.btn.edit-adventure:hover {
+.btn.edit-adventure:hover,
+.btn.edit-photo:hover{
     box-shadow: 0 0 25px #375d6f;
 }
 
 .btn.delete-business,
 .btn.delete-competition,
-.btn.delete-adventure {
+.btn.delete-adventure,
+.btn.delete-photo {
     background-color: #d40c33;;
 }
 
 .btn.delete-business:hover,
 .btn.delete-competition:hover,
-.btn.delete-adventure:hover {
+.btn.delete-adventure:hover,
+.btn.delete-photo:hover {
     box-shadow: 0 0 25px #d40c33;
 }
 
@@ -453,10 +502,13 @@ img.img-lake-details {
 
 #business-list-page {
     display: flex;
-    align-self: center;
-    justify-content: space-between;
-    width: 90%;
-    column-gap: 1rem;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 65%;
+}
+
+div.table-wrapper.competitions {
+    margin-top: 3rem;
 }
 
 div.business-show-inner-container {
@@ -506,7 +558,7 @@ div.adventure-details-wrapper-outer {
     align-items: center;
     justify-content: center;
     row-gap: 2rem;
-    margin: auto;
+    margin: 100px auto;
     width: 40%;
 }
 
@@ -528,6 +580,8 @@ div.adventure-details-wrapper-outer {
 }
 
 #more-links {
+    display: flex;
+    flex-direction: column;
     background-color: #abefef;
     width: 47%;
     height: 75vh;
@@ -535,11 +589,233 @@ div.adventure-details-wrapper-outer {
     padding: 0.8rem;
     box-shadow: 5px 8px 12px 6px #646262;
 }
+#more-links h2 {
+    align-self: center;
+}
 
 div.more-links-wrapper{
+    display: flex;
+    flex-direction: column;
     border-radius: 20px;
     height: 100%;
     padding: 1.2rem;
     text-align: center;
+    row-gap: 1rem;
 
+}
+
+div.more-links-wrapper a {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #375d6f;
+    text-align: left;
+}
+
+div.more-links-wrapper a:hover {
+    font-size: 1.4rem;
+}
+
+div.main-container.photos-list {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: auto;
+    /*justify-content: space-evenly;*/
+}
+
+div #photo-show-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    background-color: #d2dcdc;
+    border-radius: 12px 12px 0 0;
+    width: 220px;
+    height: 290px;
+    align-self: center;
+
+
+}
+
+div #photo-show-container p:first-child {
+    width: 100%;
+    height: 60%;
+}
+div #photo-show-container p img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px 12px 0 0;
+}
+
+div a.btn.photo-details-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 90px;
+    height: 30px;
+    font-size: 1rem;
+}
+
+div #photo-show-container p:nth-child(2) {
+    padding: 5px;
+    text-align: center;
+}
+
+div.owner-page-main-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+}
+
+#side-board {
+    background-color: #abefef;
+    width: 30%;
+    height: 76vh;
+    border-radius: 20px;
+    padding: 1rem;
+}
+
+div.side-board-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+div.side-board-wrapper a {
+    color: #375d6f;
+    font-size: 1rem;
+}
+
+div.list-photos-page {
+    display: flex;
+    flex-direction: row;
+    column-gap: 0.5rem;
+    justify-content: space-around;
+}
+
+div.main-container-outer.photos-list {
+    width: 75%;
+    align-items: center;
+    margin-left: 2.5rem;
+}
+
+#filter-form {
+    width: 25%;
+    height: 71.5vh;
+    background-color: #b9e5e2;
+    border-radius: 12px 12px 0 0;
+    margin-right: 2.5rem;
+    padding: 1rem;
+}
+
+div.filter-wrapper {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.8rem;
+}
+
+div.filter-wrapper.my-photo {
+    margin-top: 2rem;
+    row-gap: 2.5rem;
+}
+
+div.filter-wrapper div:nth-child(6) div:first-child,
+div.filter-wrapper div:nth-child(6) div:nth-child(2),
+div.filter-wrapper div:nth-child(6) div:nth-child(3){
+    display: flex;
+    flex-direction: row;
+    row-gap: 0.2rem;
+    align-items: center;
+}
+
+
+div.filter-wrapper div:nth-child(6) div:first-child input,
+div.filter-wrapper div:nth-child(6) div:nth-child(2) input,
+div.filter-wrapper div:nth-child(6) div:nth-child(3) input {
+    width: 10%;
+}
+
+div.filter-wrapper div:nth-child(6) div:first-child label,
+div.filter-wrapper div:nth-child(6) div:nth-child(2) label,
+div.filter-wrapper div:nth-child(6) div:nth-child(3) label {
+    width: 90%;
+}
+
+div.filter-wrapper button {
+    width: 150px;
+    height: 30px;
+    align-self: center;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #0c8380;
+    color: whitesmoke;
+}
+
+div.filter-wrapper button.my-photo {
+    margin-top: 3rem;
+}
+
+
+div.pagination {
+    text-align: center;
+}
+
+div.pagination a {
+    color: #375d6f;
+}
+
+div.pagination.list-photos {
+    text-align: center;
+}
+
+div.pagination.list-photos a {
+    color: #375d6f;
+    margin-left: 0.3rem;
+}
+
+div.contacts-outer-container {
+    display: flex;
+    align-self: center;
+    border: 2px solid #0c8380;
+    padding: 0.5rem;
+    border-radius: 8px;
+    background-color: #0c8380;
+}
+
+div.contacts-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-self: center;
+    font-size: 1.2rem;
+    border: 2px solid #0c8380;
+    padding: 1rem;
+    background-color: whitesmoke;
+}
+div.contacts-container h1 {
+    align-self: center;
+}
+
+div.address {
+    margin-top: 1rem;
+}
+
+div.main-container.photos-list-wrapper {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+    max-width: 100%;
+}
+
+div.main-container.photos-list-wrapper-inner {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+div.main-container.photos-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

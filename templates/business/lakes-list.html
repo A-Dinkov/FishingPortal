@@ -8,7 +8,7 @@
                     <th>Lake Name</th>
                     <th>City</th>
                     <th>Phone Number</th>
-                    <th>Picture</th>
+                    <th>Pictures</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                     </td>
                     <td>{{ business.city }}</td>
                     <td>0{{ business.phone_number }}</td>
-                    <td><img src="{{ business.business_images.url }}" alt=""></td>
+                    <td><a href="{% url 'business_photo' business.pk %}"><img src="{{ business.business_images.url }}" alt=""></a></td>
 
                 </tr>
             {% endfor %}

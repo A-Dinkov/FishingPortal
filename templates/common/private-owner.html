@@ -1,9 +1,9 @@
 {% extends 'common/base.html' %}
 
 {% block content %}
-
-        <div id="business-list-page">
-            <div class="table-wrapper">
+    <div class="owner-page-main-container">
+        <section id="business-list-page">
+            <div class="table-wrapper business">
                 <table>
                 <caption>My Businesses</caption>
                 <thead>
@@ -31,7 +31,24 @@
                 </tbody>
             </table>
             </div>
-            <div class="table-wrapper">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <div class="table-wrapper competitions">
                 <table>
                 <caption>Organised Competitions </caption>
                 <thead>
@@ -74,8 +91,31 @@
                 </tbody>
             </table>
             </div>
+            <div class="pagination owner">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
 
-        </div>
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                    </span>
 
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </section>
+        <section id="side-board">
+            <div class="side-board-wrapper">
+                <a href="{% url 'upload_photo' %}">Upload Photos</a>
+                <a href="{% url 'create_competition' %}">Add Competitions</a>
+                <a href="{% url 'list_photos' %}">Photos</a>
+            </div>
+        </section>
 
+    </div>
 {% endblock %}

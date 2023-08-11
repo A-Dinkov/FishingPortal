@@ -3,37 +3,39 @@
 {% load get_user_profile %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
 
-        {% if user_profile %}
-            {% if request.user.is_owner %}
-                <div class="main-container owner">
-                    {% include 'common/private-owner.html' %}
-                    <h1>Welcome to your Fishing Portal</h1>
-                    <a class="owner-private-page" href="{% url 'private_owner' %}">Your Space</a>
-                </div>
+    <div class="home-page-wrapper">
+        {% if request.user.is_authenticated %}
+
+            {% if template_userprofile %}
+                {% if request.user.is_owner %}
+                    <div class="main-container owner">
+                        <h1>Welcome to your Fishing Portal</h1>
+                        <a class="owner-private-page" href="{% url 'private_owner' user.pk %}">Your Space</a>
+                    </div>
+                {% else %}
+                    <div class="main-container home">
+                        <h1>Welcome to your Fishing Portal</h1>
+                        <a class="regular-private-page" href="{% url 'private_regular' user.pk %}">Your Space</a>
+                    </div>
+                {% endif %}
+
+
             {% else %}
-                <div class="main-container">
+                <div class="main-container home">
                     <h1>Welcome to your Fishing Portal</h1>
-                    <a class="regular-private-page" href="{% url 'private_regular' user.pk %}">Your Space</a>
+                    <p class="create-profile"><a href="{% url 'create_profile' %}">Create profile</a></p>
                 </div>
             {% endif %}
-
-
         {% else %}
             <div class="main-container">
-                <h1>Welcome to your Fishing Portal</h1>
-                <p class="create-profile"><a href="{% url 'create_profile' %}">Create profile</a></p>
+                <h1>Welcome</h1>
+                <h1>to</h1>
+                <img class="logo" src="{% static 'images/app_logo.png' %}" alt="">
+                <div class="login-wrapper"><a class="button welcome" href="{% url 'login' %}">Sign In</a></div>
+
             </div>
+
         {% endif %}
-    {% else %}
-        <div class="main-container">
-            <h1>Welcome</h1>
-            <h1>to</h1>
-            <img class="logo" src="{% static 'images/app_logo.png' %}" alt="">
-            <div class="login-wrapper"><a class="button welcome" href="{% url 'login' %}">Sign In</a></div>
-
-        </div>
-
-    {% endif %}
+    </div>
 {% endblock %}

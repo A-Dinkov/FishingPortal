@@ -10,7 +10,8 @@
 #edit-competition-page,
 #create-adventure-page,
 #edit-adventure-page,
-#upload-photo-page {
+#upload-photo-page,
+#edit-photo-page {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,7 +41,8 @@ div.edit-business-container,
 div.edit-competition-container,
 div.create-adventure-container,
 div.edit-adventure-container,
-div.upload-photo-container{
+div.upload-photo-container,
+div.edit-photo-container {
     display: flex;
     flex-direction: column;
     row-gap: 2rem;
@@ -375,19 +377,22 @@ div.edit-business-image input:nth-child(5) {
 
 
 #edit-business,
-div.delete-business {
+div.delete-business,
+div.delete-photo-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 1rem;
 }
 
-div.delete-business {
+div.delete-business,
+div.delete-photo-container{
     row-gap: 2rem;
     margin-top: 5rem;
 }
 
-.btn.delete-business-input {
+.btn.delete-business-input,
+.btn.delete-photo-input{
     width: 150px;
 }
 
@@ -406,3 +411,4 @@ div.errors-edit-business ul li span {
 div.create-adventure-container h2 {
     align-self: center;
 }
+

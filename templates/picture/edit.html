@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <section id="edit-photo-page">
+        <form id="edit-photo" action="{% url 'edit_photo' photo.slug %}" method="post" enctype="multipart/form-data">
+            <div class="edit-photo-container">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn" type="submit">Submit</button>
+        </div>
+
+        </form>
+    </section>
+
+{% endblock %}

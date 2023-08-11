@@ -13,7 +13,7 @@ UserModel = get_user_model()
 class RegularUserHomeView(LoginRequiredMixin, views.DetailView):
     model = UserModel
     template_name = 'common/private-regular.html'
-    context_object_name = 'user_object'
+    # context_object_name = 'user_object'
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
@@ -34,8 +34,9 @@ class RegularUserHomeView(LoginRequiredMixin, views.DetailView):
 
 
 class BusinessOwnerView(LoginRequiredMixin, views.ListView):
-    template_name = 'business/../../templates/common/private-owner.html'
+    template_name = 'common/private-owner.html'
     model = Business
+    paginate_by = 2
 
     def get_queryset(self):
         # This ensures that only the businesses owned by the user are fetched.
@@ -50,6 +51,12 @@ class BusinessOwnerView(LoginRequiredMixin, views.ListView):
         # Fetch related competitions for those businesses.
         # This creates a dictionary where the key is a business and the value is a list of its competitions.
         business_competitions = {business: business.competitions.all() for business in user_businesses}
+
+        paginator = Paginator(user_businesses, self.paginate_by)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context['page_obj'] = page_obj
+        context['paginator'] = paginator
 
         context['business_competitions'] = business_competitions
         return context

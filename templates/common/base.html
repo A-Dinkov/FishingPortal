@@ -1,6 +1,6 @@
 {% load static %}
 {% load get_user_profile %}
-{% get_profile as user_profile %}
+{% get_profile as template_userprofile %}
 
 
 
@@ -39,22 +39,34 @@
                             {% if request.user.is_owner %}
                                 {% if request.user.is_superuser or request.user.is_staff %}
                                     <li><a class="button" href="{% url 'admin:index' %}">ADMIN</a></li>
+                                    <li><a class="button" href="{% url 'list_photos' %}">PHOTOS</a></li>
                                     <li><a class="button" href="{% url 'list_lakes'%}">LAKES</a></li>
                                     <li><a class="button" href="{% url 'list_competitions' %}">COMPETITIONS</a></li>
+                                    <li><a class="button" href="{% url 'list_adventures' %}">ADVENTURES</a></li>
                                 {% else %}
                                     <li><a class="button" href="{% url 'create_competition' %}">SET COMPETITION</a></li>
                                     <li><a class="button" href="{% url 'create_business' %}">ADD BUSINESS</a></li>
+                                    <li><a class="button" href="{% url 'list_photos' %}">PHOTOS</a></li>
                                     <li><a class="button" href="{% url 'list_lakes'%}">LAKES</a></li>
                                     <li><a class="button" href="{% url 'list_competitions' %}">COMPETITIONS</a></li>
+                                    <li><a class="button" href="{% url 'list_adventures' %}">ADVENTURES</a></li>
                                 {% endif %}
-                                {% if user_profile %}
-                                    <li id="profile-created">Hi, <span>{{ user_profile.first_name }}</span></li>
+                                {% if template_userprofile %}
+                                    <li id="profile-created">Hi, <span>{{ template_userprofile.first_name }}</span></li>
                                     <div class="dropdown">
-                                        <img id="img-profile" src="{{ user_profile.image_profile.url }}" alt="">
+                                        <img id="img-profile" src="{{ template_userprofile.image_profile.url }}" alt="">
                                         <div class="dropdown-menu">
                                             <div class="dropdown-wrapper">
+                                                {% if user.is_owner %}
+                                                    <a href="{% url 'private_owner' user.pk %}">My Space</a>
+                                                {% elif user.is_regular_user %}
+                                                    <a href="{% url 'private_regular' user.pk %}">My Space</a>
+                                                {% elif user.is_staff %}
+                                                    <a href="{% url 'admin:index' %}">ADMIN</a>
+                                                {% endif %}
                                                 <a href="{% url 'profile' user.pk %}">Profile</a>
                                                 <a href="{% url 'logout' %}">Logout</a>
+                                                <a href="{% url 'delete_user' user.pk %}">Delete Profile</a>
                                             </div>
                                         </div>
                                     </div>
@@ -64,8 +76,16 @@
                                         <img id="img-profile" src="{% static 'images/default.jpg' %}" alt="">
                                         <div class="dropdown-menu">
                                             <div class="dropdown-wrapper">
+                                                {% if user.is_owner %}
+                                                    <a href="{% url 'private_owner' user.pk %}">My Space</a>
+                                                {% elif user.is_regular_user %}
+                                                    <a href="{% url 'private_regular' user.pk %}">My Space</a>
+                                                {% elif user.is_staff %}
+                                                    <a href="{% url 'admin:index' %}">ADMIN</a>
+                                                {% endif %}
                                                 <a href="{% url 'profile' user.pk %}">Profile</a>
                                                 <a href="{% url 'logout' %}">Logout</a>
+                                                <a href="{% url 'delete_user' user.pk %}">Delete Profile</a>
                                             </div>
                                         </div>
                                     </div>
@@ -75,21 +95,33 @@
                                 {% if request.user.is_superuser or request.user.is_staff %}
                                     <li><a class="button" href="{% url 'admin:index' %}">ADMIN</a></li>
                                     <li><a class="button" href="{% url 'create_business' %}">ADD BUSINESS</a></li>
+                                    <li><a class="button" href="{% url 'list_photos' %}">PHOTOS</a></li>
                                     <li><a class="button" href="#">LAKES</a></li>
                                     <li><a class="button" href="{% url 'list_competitions' %}">COMPETITIONS</a></li>
+                                    <li><a class="button" href="{% url 'list_adventures' %}">ADVENTURES</a></li>
                                 {% else %}
                                     <li><a class="button" href="{% url 'create_business' %}">ADD BUSINESS</a></li>
+                                    <li><a class="button" href="{% url 'list_photos' %}">PHOTOS</a></li>
                                     <li><a class="button" href="{% url 'list_lakes'%}">LAKES</a></li>
                                     <li><a class="button" href="{% url 'list_competitions' %}">COMPETITIONS</a></li>
+                                    <li><a class="button" href="{% url 'list_adventures' %}">ADVENTURES</a></li>
                                 {% endif %}
-                                {% if user_profile %}
-                                    <li id="profile-created">Hi, <span>{{ user_profile.first_name }}</span></li>
+                                {% if template_userprofile %}
+                                    <li id="profile-created">Hi, <span>{{ template_userprofile.first_name }}</span></li>
                                     <div class="dropdown">
-                                        <img id="img-profile" src="{{ user_profile.image_profile.url }}" alt="">
+                                        <img id="img-profile" src="{{ template_userprofile.image_profile.url }}" alt="">
                                         <div class="dropdown-menu">
                                             <div class="dropdown-wrapper">
+                                                {% if user.is_owner %}
+                                                    <a href="{% url 'private_owner' user.pk %}">My Space</a>
+                                                {% elif user.is_regular_user %}
+                                                    <a href="{% url 'private_regular' user.pk %}">My Space</a>
+                                                {% elif user.is_staff %}
+                                                    <a href="{% url 'admin:index' %}">ADMIN</a>
+                                                {% endif %}
                                                 <a href="{% url 'profile' user.pk %}">Profile</a>
                                                 <a href="{% url 'logout' %}">Logout</a>
+                                                <a href="{% url 'delete_user' user.pk %}">Delete Profile</a>
                                             </div>
                                         </div>
                                     </div>
@@ -99,8 +131,16 @@
                                         <img id="img-profile" src="{% static 'images/default.jpg' %}" alt="">
                                         <div class="dropdown-menu">
                                             <div class="dropdown-wrapper">
+                                                {% if user.is_owner %}
+                                                    <a href="{% url 'private_owner' user.pk %}">My Space</a>
+                                                {% elif user.is_regular_user %}
+                                                    <a href="{% url 'private_regular' user.pk %}">My Space</a>
+                                                {% elif user.is_staff %}
+                                                    <a href="{% url 'admin:index' %}">ADMIN</a>
+                                                {% endif %}
                                                 <a href="{% url 'profile' user.pk %}">Profile</a>
                                                 <a href="{% url 'logout' %}">Logout</a>
+                                                <a href="{% url 'delete_user' user.pk %}">Delete Profile</a>
                                             </div>
                                         </div>
                                     </div>
@@ -123,10 +163,10 @@
         {% endblock %}
     </div>
     <footer id="site-footer">
-        <p>Python Web Framework</p>
+        <p><span>Python Web Framework</span></p>
         <div id="footer-container">
             <a class="button" href="{% url 'about' %}">About</a>
-            <a class="button" href="#">Contacts</a>
+            <a class="button" href="{% url 'contact' %}">Contacts</a>
         </div>
     </footer>
     <script src="{% static 'js/messages.js' %}"></script>

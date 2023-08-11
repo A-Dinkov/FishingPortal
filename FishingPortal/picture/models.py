@@ -12,7 +12,7 @@ from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 class Picture(models.Model):
 
-    TITLE_MAX_LENGTH = 20
+    TITLE_MAX_LENGTH = 30
     TITLE_MIN_LENGTH = 2
 
     objects = models.Manager()
@@ -23,7 +23,7 @@ class Picture(models.Model):
         null=False,
         validators=(
             MinLengthValidator(TITLE_MIN_LENGTH),
-            MinLengthValidator(TITLE_MAX_LENGTH),
+            MaxLengthValidator(TITLE_MAX_LENGTH),
             ValidateIsOnlyAlpha()
         )
     )
@@ -87,4 +87,4 @@ class Picture(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Uploaded by{self.uploader.name}'
+        return f'Uploaded by {self.uploader.userprofile.first_name} {self.uploader.userprofile.last_name}'

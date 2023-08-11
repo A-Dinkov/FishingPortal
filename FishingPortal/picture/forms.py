@@ -30,10 +30,30 @@ class UploadPictureForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user', None)
+        print(user)
         super(UploadPictureForm, self).__init__(*args, **kwargs)
 
-        if user:
-            self.fields['related_adventure'].queryset = Adventure.objects.filter(adventurer=user)
-            self.fields['related_business'].queryset = Business.objects.filter(owner=user)
-            self.fields['related_competition'].queryset = Competition.objects.filter(participants=user)
+        if user is not None:
+
+            if user.is_owner:
+                self.fields['related_adventure'].queryset = Adventure.objects.filter(adventurer=user)
+                businesses_owned_by_user = Business.objects.filter(owner=user)
+                self.fields['related_competition'].queryset = Competition.objects.filter(
+                    business__in=businesses_owned_by_user)
+                self.fields['related_business'].queryset = Business.objects.filter(owner=user)
+
+            else:
+                del self.fields['related_business']
+                self.fields['related_competition'].queryset = Competition.objects.filter(participants=user)
+                self.fields['related_adventure'].queryset = Adventure.objects.filter(adventurer=user)
+
+        else:
+            pass
+
+
+class PhotoEditForm(UploadPictureForm):
+    class Meta(UploadPictureForm.Meta):
+        model = Picture
+        fields = ('title', 'description', 'upload_date')
+
 

@@ -1,0 +1,64 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="list-photos-page">
+        <div class="main-container-outer photos-list">
+            {% if not business_pk %}
+                <div class="main-container photos-list">
+                    {% for photo in photos %}
+                        <div id="photo-show-container">
+                            <p><img class="img-lake-details" src="{{ photo.image.url }}" alt=""></p>
+                            <p>{{ photo.title }}</p>
+                            <a class="btn photo-details-link" href="{% url 'photo_details' photo.slug %}">Details</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="main-container photos-list">
+                    {% for photo in object_list %}
+                        <div id="photo-show-container">
+                            <p><img class="img-lake-details" src="{{ photo.image.url }}" alt=""></p>
+                            <p>{{ photo.title }}</p>
+                            <a class="btn photo-details-link" href="{% url 'photo_details' photo.slug %}">Details</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %} 
+
+            <div class="pagination list-photos">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        {% if not business_pk %}
+            {% if show_filter == 'all_photos' %}
+            <form id="filter-form" method="get">
+                <div class="filter-wrapper">
+                   {{ filter.form.as_p }}
+                   <button type="submit">Filter</button>
+                </div>
+            </form>
+        {% elif show_filter == 'user_photos' %}
+            <form id="filter-form" method="get">
+                <div class="filter-wrapper my-photo">
+                   {{ filter.form.as_p }}
+                   <button class="my-photo" type="submit">Filter</button>
+                </div>
+            </form>
+        {% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

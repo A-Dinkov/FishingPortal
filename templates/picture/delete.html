@@ -1,0 +1,14 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <div class="delete-photo-container">
+        <h2>Confirm Deletion</h2>
+        <p>Are you sure you want to delete the photo with tittle "{{ photo.title }}"?</p>
+        <p><img src="{{ photo.image.url }}" alt=""></p>
+        <form method="post" action="{% url 'delete_photo' photo.slug %}">
+            {% csrf_token %}
+
+            <input class="btn delete-photo-input" type="submit" value="Delete">
+        </form>
+    </div>
+{% endblock %}

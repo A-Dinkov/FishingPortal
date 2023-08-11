@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_cleanup.apps.CleanupConfig',
+    'django_filters',
 
     'FishingPortal.auth_app',
     'FishingPortal.common',

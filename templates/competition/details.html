@@ -8,7 +8,6 @@
             <p>Place:<span>{{ competition.place }}</span></p>
             <p>Date:<span>{{ competition.date }}</span></p>
             <p>Organiser:<span>{{ competition.business.lake_name }}</span></p>
-            <p>Organiser Name:<span>{{ user_profile.first_name }} {{ user_profile.last_name }}</span> </p>
             <p>Description:<span>{{ competition.description }}</span></p>
 
         {% if competition.business.owner.pk == request.user.pk %}
