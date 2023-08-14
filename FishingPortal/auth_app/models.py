@@ -1,13 +1,18 @@
+# Django imports
 from django.contrib.auth import models as auth_models, get_user_model
 from django.core.validators import FileExtensionValidator, MinValueValidator, MinLengthValidator, MaxLengthValidator
 from django.db import models
 from django.utils import timezone
+
+# Application imports
 from FishingPortal.auth_app.managers import RegularUserManager
 from FishingPortal.auth_app.validators import ValidateImageSize, ValidateIsOnlyAlpha
 
 
 class RegularUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     objects = RegularUserManager()
+
+    EMAIL_MAX_LENGTH = 50
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
@@ -17,7 +22,9 @@ class RegularUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         null=False,
         blank=False,
         unique=True,
-        max_length=150
+        validators=(
+            MaxLengthValidator(EMAIL_MAX_LENGTH),
+        )
     )
 
     consent = models.BooleanField(
@@ -61,6 +68,8 @@ class UserProfile(models.Model):
     MIN_LENGTH_NAME = 2
     MAX_LENGTH_NAME = 50
     MIN_AGE = 16
+    CITY_MAX_LENGTH = 30
+    BIO_MAX_LENGTH = 1000
 
     user = models.OneToOneField(UserModel, on_delete=models.CASCADE, primary_key=True)
 
@@ -96,13 +105,17 @@ class UserProfile(models.Model):
     city = models.CharField(
         blank=True,
         null=True,
-        max_length=80,
+        validators=(
+            MaxLengthValidator(CITY_MAX_LENGTH),
+        )
     )
 
     bio = models.TextField(
-        max_length=1000,
         blank=True,
-        null=True
+        null=True,
+        validators=(
+            MaxLengthValidator(BIO_MAX_LENGTH),
+        )
     )
 
     image_profile = models.ImageField(
