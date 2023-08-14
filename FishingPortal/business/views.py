@@ -1,14 +1,17 @@
+# Django imports
 from django.contrib import messages
+from django.contrib.auth.models import Group
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import Group
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse
 from django.views import generic as views
+
+# Application imports
 from FishingPortal.business.forms import BusinessCreationForm, BusinessEditForm
+from FishingPortal.business.models import Business, Like
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
-from .models import Business, Like
 
 
 UserModel = get_user_model()

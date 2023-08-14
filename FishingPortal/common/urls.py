@@ -1,5 +1,8 @@
+# Django imports
 from django.urls import path
 from django.views import generic as auth_views
+
+# Application imports
 from FishingPortal.common.views import RegularUserHomeView, BusinessOwnerView
 
 urlpatterns = [

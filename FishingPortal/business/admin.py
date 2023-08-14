@@ -1,5 +1,7 @@
+# Django imports
 from django.contrib import admin
 
+# Application imports
 from FishingPortal.business.forms import BusinessCreationForm
 from FishingPortal.business.models import Business
 

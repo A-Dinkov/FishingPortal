@@ -1,11 +1,12 @@
+# Django imports
 from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.core.validators import MinLengthValidator, FileExtensionValidator, MaxLengthValidator
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.urls import reverse
 
+# Application imports
 from FishingPortal.auth_app.validators import ValidateImageSize, ValidateIsOnlyAlpha
 from FishingPortal.business.validators import ValidateIsAlAlphaNumHypAndUnderscore, ValidateNuberOfDigits
 

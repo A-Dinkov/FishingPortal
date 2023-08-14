@@ -1,9 +1,12 @@
+# Django imports
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
-from django.views import generic as views
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
+from django.views import generic as views
+
+# Application imports
 from FishingPortal.adventure.models import Adventure
 from FishingPortal.business.models import Business, Like
 from FishingPortal.picture.models import Picture
