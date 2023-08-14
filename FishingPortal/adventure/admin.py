@@ -1,5 +1,7 @@
+# Django imports
 from django.contrib import admin
 
+# Application imports
 from FishingPortal.adventure.forms import AdventureCreationForm
 from FishingPortal.adventure.models import Adventure
 

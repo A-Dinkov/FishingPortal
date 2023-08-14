@@ -1,10 +1,13 @@
+# Django imports
 from django.contrib.auth import get_user_model
+from django.core.validators import MaxLengthValidator, MinLengthValidator
 from django.db import models
 from django.template.defaultfilters import slugify
 
+# Project-specific imports
 from FishingPortal.auth_app.validators import ValidateIsOnlyAlpha
 from FishingPortal.business.validators import ValidateIsAlAlphaNumHypAndUnderscore
-from django.core.validators import MaxLengthValidator, MinLengthValidator
+
 
 UserModel = get_user_model()
 

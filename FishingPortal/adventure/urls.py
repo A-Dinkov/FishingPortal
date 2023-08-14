@@ -1,4 +1,7 @@
+# Django imports
 from django.urls import path
+
+# Application imports
 from FishingPortal.adventure.views import CreateAdventureView, AdventureDetailView, EditAdventureView, \
     DeleteAdventureView, ListAdventuresView
 

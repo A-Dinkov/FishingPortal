@@ -1,7 +1,10 @@
+# Django imports
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy
 from django.views import generic as views
-from django.contrib.auth.mixins import LoginRequiredMixin
+
+# Application imports
 from FishingPortal.adventure.forms import AdventureCreationForm, AdventureEditForm
 from FishingPortal.adventure.models import Adventure
 

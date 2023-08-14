@@ -1,4 +1,7 @@
+# Django imports
 from django import forms
+
+# Application imports
 from FishingPortal.adventure.models import Adventure
 
 
