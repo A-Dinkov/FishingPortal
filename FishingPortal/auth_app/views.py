@@ -1,28 +1,26 @@
+# Django imports
 from django.contrib import messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views import generic as auth_views
-from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView, \
-    PasswordResetConfirmView, PasswordResetCompleteView
+from django.views import generic as gen_views
+from django.contrib.auth import views as auth_views
 
-
-from FishingPortal.auth_app.forms import RegularUserCreationForm, ProfileCreationForm, \
-    CustomPasswordResetForm, AppSetPasswordForm, UserProfileEditForm, CustomLoginForm
+# Application imports
+from FishingPortal.auth_app import forms as app_forms
 from FishingPortal.auth_app.mixins import AnonymousUserOnlyMixin
 from FishingPortal.auth_app.models import RegularUser, UserProfile
 
 
-class RegisterUser(AnonymousUserOnlyMixin, SuccessMessageMixin, auth_views.CreateView,):
+class RegisterUser(AnonymousUserOnlyMixin, SuccessMessageMixin, gen_views.CreateView,):
     template_name = 'auth_app/register.html'
     success_url = reverse_lazy('home')
     success_message = 'Your registration is successful'
-    form_class = RegularUserCreationForm
+    form_class = app_forms.RegularUserCreationForm
 
     def form_valid(self, form):
-        # without explicitly mentioning the parent class name in super()-->Python3 and later
         response = super().form_valid(form)
         self.request.session['new_user_id'] = self.object.id
 
@@ -37,9 +35,9 @@ class RegisterUser(AnonymousUserOnlyMixin, SuccessMessageMixin, auth_views.Creat
         return response
 
 
-class UserProfileCreateView(LoginRequiredMixin, auth_views.CreateView):
+class UserProfileCreateView(LoginRequiredMixin, gen_views.CreateView):
     model = UserProfile
-    form_class = ProfileCreationForm
+    form_class = app_forms.ProfileCreationForm
     template_name = 'auth_app/create-profile.html'
     success_url = reverse_lazy('home')
 
@@ -49,7 +47,7 @@ class UserProfileCreateView(LoginRequiredMixin, auth_views.CreateView):
         return super(UserProfileCreateView, self).form_valid(form)
 
 
-class ShowProfile(LoginRequiredMixin, auth_views.DetailView):
+class ShowProfile(LoginRequiredMixin, gen_views.DetailView):
     model = UserProfile
     template_name = 'auth_app/profile.html'
 
@@ -67,9 +65,9 @@ class ShowProfile(LoginRequiredMixin, auth_views.DetailView):
             return render(request, 'auth_app/profile-not-exist.html')
 
 
-class UpdateUserProfileView(LoginRequiredMixin, auth_views.UpdateView):
+class UpdateUserProfileView(LoginRequiredMixin, gen_views.UpdateView):
     model = UserProfile
-    form_class = UserProfileEditForm
+    form_class = app_forms.UserProfileEditForm
     template_name = 'auth_app/edit-profile.html'
 
     def get_success_url(self):
@@ -82,21 +80,21 @@ class UpdateUserProfileView(LoginRequiredMixin, auth_views.UpdateView):
         return super().form_valid(form)
 
 
-class CustomLoginView(LoginView):
+class CustomLoginView(auth_views.LoginView):
     template_name = 'auth_app/login.html'
-    form_class = CustomLoginForm
+    form_class = app_forms.CustomLoginForm
 
 
-class CustomLogoutView(LogoutView):
+class CustomLogoutView(auth_views.LogoutView):
     pass
 
 
-class ShowUserList(LoginRequiredMixin, auth_views.ListView):
+class ShowUserList(LoginRequiredMixin, gen_views.ListView):
     model = RegularUser
     template_name = 'auth_app/user-list.html'
 
 
-class DeleteUser(LoginRequiredMixin, auth_views.DeleteView):
+class DeleteUser(LoginRequiredMixin, gen_views.DeleteView):
     model = RegularUser
     template_name = 'auth_app/delete-user.html'
     success_url = reverse_lazy('home')
@@ -106,19 +104,19 @@ class DeleteUser(LoginRequiredMixin, auth_views.DeleteView):
         return super(DeleteUser, self).form_valid(form)
 
 
-class AppPasswordResetView(PasswordResetView):
+class AppPasswordResetView(auth_views.PasswordResetView):
     template_name = 'auth_app/password-reset.html'
-    form_class = CustomPasswordResetForm
+    form_class = app_forms.CustomPasswordResetForm
 
 
-class AppPasswordResetDoneView(PasswordResetDoneView):
+class AppPasswordResetDoneView(auth_views.PasswordResetDoneView):
     template_name = 'auth_app/password-reset-done.html'
 
 
-class AppPasswordResetConfirmView(PasswordResetConfirmView):
+class AppPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     template_name = 'auth_app/password-reset-confirm.html'
-    form_class = AppSetPasswordForm
+    form_class = app_forms.AppSetPasswordForm
 
 
-class AppPasswordResetCompleteView(PasswordResetCompleteView):
+class AppPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
     template_name = 'auth_app/password-reset-complete.html'
