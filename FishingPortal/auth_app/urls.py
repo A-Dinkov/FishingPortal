@@ -1,10 +1,16 @@
-from django.urls import path
-from .views import RegisterUser, CustomLoginView, CustomLogoutView, ShowUserList, ShowProfile, UserProfileCreateView, \
-    DeleteUser, AppPasswordResetView, AppPasswordResetDoneView, AppPasswordResetConfirmView, \
-    AppPasswordResetCompleteView, UpdateUserProfileView
-from django.views import generic as views
+# Django imports
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
+from django.views import generic as views
+
+# Project-specific imports
+from .views import (
+    AppPasswordResetCompleteView, AppPasswordResetConfirmView,
+    AppPasswordResetDoneView, AppPasswordResetView, CustomLoginView,
+    CustomLogoutView, DeleteUser, RegisterUser, ShowProfile,
+    ShowUserList, UpdateUserProfileView, UserProfileCreateView
+)
 
 
 urlpatterns = [
