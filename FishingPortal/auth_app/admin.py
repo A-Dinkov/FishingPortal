@@ -1,7 +1,10 @@
+# Django imports
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
-from FishingPortal.auth_app.forms import RegularUserChangeForm, RegularUserCreationForm, CustomAdminPasswordChangeForm, \
+
+# Application imports
+from FishingPortal.auth_app.forms import RegularUserChangeForm, RegularUserCreationForm, CustomAdminPasswordChangeForm,\
     UserProfileEditForm
 from FishingPortal.auth_app.models import RegularUser, UserProfile
 
