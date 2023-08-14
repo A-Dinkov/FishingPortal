@@ -1,5 +1,8 @@
+# Django imports
 from django import forms
 from django.contrib.auth import get_user_model
+
+# Application imports
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AdminPasswordChangeForm, BaseUserCreationForm, \
     PasswordResetForm, SetPasswordForm, AuthenticationForm
 from FishingPortal.auth_app.models import RegularUser, UserProfile
