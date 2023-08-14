@@ -1,17 +1,18 @@
+# Django imports
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse_lazy, reverse
-from django.views import generic as views
+from django.urls import reverse
+from django.views import generic as gen_views
 
-from FishingPortal.auth_app.models import UserProfile
-from FishingPortal.competition.forms import CompetitionCreationForm, CompetitionEditForm
+# Application imports
+from FishingPortal.competition.forms import CompetitionEditForm, CompetitionCreationForm
 from FishingPortal.competition.models import Competition
 
 
-class CompetitionCreateView(LoginRequiredMixin, views.CreateView):
+class CompetitionCreateView(LoginRequiredMixin, gen_views.CreateView):
     model = Competition
     form_class = CompetitionCreationForm
     template_name = 'competition/create.html'
@@ -30,12 +31,12 @@ class CompetitionCreateView(LoginRequiredMixin, views.CreateView):
         return super().form_valid(form)
 
 
-class CompetitionDetailsView(LoginRequiredMixin, views.DetailView):
+class CompetitionDetailsView(LoginRequiredMixin, gen_views.DetailView):
     model = Competition
     template_name = 'competition/details.html'
 
 
-class CompetitionEditView(LoginRequiredMixin, views.UpdateView):
+class CompetitionEditView(LoginRequiredMixin, gen_views.UpdateView):
     model = Competition
     form_class = CompetitionEditForm
     template_name = 'competition/edit.html'
@@ -45,7 +46,7 @@ class CompetitionEditView(LoginRequiredMixin, views.UpdateView):
         return reverse('private_owner', args=[user.pk])
 
 
-class CompetitionDeleteView(LoginRequiredMixin, views.DeleteView):
+class CompetitionDeleteView(LoginRequiredMixin, gen_views.DeleteView):
     model = Competition
     template_name = 'competition/delete.html'
     context_object_name = 'competition'
@@ -97,7 +98,7 @@ def sign_off_from_competition(request, slug):
     return redirect('list_competitions')
 
 
-class CompetitionsListDisplayView(LoginRequiredMixin, views.ListView):
+class CompetitionsListDisplayView(LoginRequiredMixin, gen_views.ListView):
     model = Competition
     template_name = 'competition/competition-list.html'
     context_object_name = 'competitions'

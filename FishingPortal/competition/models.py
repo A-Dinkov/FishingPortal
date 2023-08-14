@@ -1,9 +1,11 @@
+# Django imports
 from django.contrib.auth import get_user_model
+from django.core.validators import MaxLengthValidator, MinLengthValidator
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
-from django.utils import timezone
-from django.core.validators import MaxLengthValidator, MinLengthValidator
+
+# Application imports
 from FishingPortal.business.models import Business
 from FishingPortal.business.validators import ValidateIsAlAlphaNumHypAndUnderscore
 

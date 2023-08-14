@@ -1,4 +1,7 @@
+# Django imports
 from django.contrib import admin
+
+# Application imports
 from FishingPortal.competition.forms import CompetitionCreationForm
 from FishingPortal.competition.models import Competition
 

@@ -1,7 +1,13 @@
+# Django imports
 from django.urls import path
-from FishingPortal.competition.views import CompetitionCreateView, CompetitionDetailsView, CompetitionEditView, \
-    CompetitionDeleteView, signup_for_competition, CompetitionsListDisplayView, ParticipantsListDisplayView, \
-    sign_off_from_competition
+
+# Application imports
+from FishingPortal.competition.views import (
+    CompetitionCreateView, CompetitionDetailsView, CompetitionEditView,
+    CompetitionDeleteView, signup_for_competition, CompetitionsListDisplayView,
+    ParticipantsListDisplayView, sign_off_from_competition
+)
+
 
 urlpatterns = [
     path('create/', CompetitionCreateView.as_view(), name='create_competition'),

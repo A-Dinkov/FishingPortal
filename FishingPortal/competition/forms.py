@@ -1,6 +1,9 @@
+# Django imports
 from django import forms
-from .models import Competition
-from ..business.models import Business
+
+# Application imports
+from FishingPortal.business.models import Business
+from FishingPortal.competition.models import Competition
 
 
 class CompetitionCreationForm(forms.ModelForm):
