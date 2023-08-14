@@ -1,5 +1,7 @@
+# Django imports
 from django.contrib import admin
 
+# Application imports
 from FishingPortal.picture.forms import UploadPictureForm
 from FishingPortal.picture.models import Picture
 

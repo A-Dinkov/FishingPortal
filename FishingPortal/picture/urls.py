@@ -1,8 +1,12 @@
+# Django imports
 from django.urls import path
 
+# Application imports
 from FishingPortal.common.views import like_object
-from FishingPortal.picture.views import UploadPictureView, PrivatePhotoView, PhotoDetailView, PhotoEditView, \
-    PhotoDeleteView, PhotoListView, BusinessPhotoListView
+from FishingPortal.picture.views import (
+    BusinessPhotoListView, UploadPictureView, PrivatePhotoView, PhotoDetailView,
+    PhotoEditView, PhotoDeleteView, PhotoListView,
+)
 
 urlpatterns = [
     path('upload/', UploadPictureView.as_view(), name='upload_photo'),

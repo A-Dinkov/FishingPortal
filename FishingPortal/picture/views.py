@@ -1,18 +1,21 @@
+# Django imports
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
-from django.views import generic as views
-from django.shortcuts import reverse
+from django.urls import reverse
+from django.views import generic as gen_views
 
+# Application imports
 from FishingPortal.business.models import Like
-from FishingPortal.picture.filters import PictureFilter, PictureFilterPrivate
-from FishingPortal.picture.forms import UploadPictureForm, PhotoEditForm
+from FishingPortal.picture.filters import PictureFilterPrivate, PictureFilter
+from FishingPortal.picture.forms import PhotoEditForm, UploadPictureForm
 from FishingPortal.picture.models import Picture
+
 
 UserModel = get_user_model()
 
 
-class UploadPictureView(LoginRequiredMixin, views.CreateView):
+class UploadPictureView(LoginRequiredMixin, gen_views.CreateView):
     model = Picture
     template_name = 'picture/upload.html'
     form_class = UploadPictureForm
@@ -40,7 +43,7 @@ class UploadPictureView(LoginRequiredMixin, views.CreateView):
         return super().form_valid(form)
 
 
-class PhotoListView(LoginRequiredMixin, views.ListView):
+class PhotoListView(LoginRequiredMixin, gen_views.ListView):
     model = Picture
     template_name = 'picture/list-photos.html'
     context_object_name = 'photos'
@@ -95,7 +98,7 @@ class BusinessPhotoListView(PhotoListView):
         return context
 
 
-class PhotoDetailView(LoginRequiredMixin, views.DetailView):
+class PhotoDetailView(LoginRequiredMixin, gen_views.DetailView):
     model = Picture
     template_name = 'picture/details.html'
     context_object_name = 'photo'
@@ -114,7 +117,7 @@ class PhotoDetailView(LoginRequiredMixin, views.DetailView):
         return context
 
 
-class PhotoEditView(LoginRequiredMixin, views.UpdateView):
+class PhotoEditView(LoginRequiredMixin, gen_views.UpdateView):
     model = Picture
     form_class = PhotoEditForm
     template_name = 'picture/edit.html'
@@ -124,7 +127,7 @@ class PhotoEditView(LoginRequiredMixin, views.UpdateView):
         return reverse('photo_details', kwargs={'slug': self.object.slug})
 
 
-class PhotoDeleteView(LoginRequiredMixin, views.DeleteView):
+class PhotoDeleteView(LoginRequiredMixin, gen_views.DeleteView):
     model = Picture
     template_name = 'picture/delete.html'
     context_object_name = 'photo'

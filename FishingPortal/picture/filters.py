@@ -1,10 +1,13 @@
+# Django imports
 import django_filters
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Picture
-from ..adventure.models import Adventure
-from ..business.models import Business
-from ..competition.models import Competition
+
+# Application imports
+from FishingPortal.adventure.models import Adventure
+from FishingPortal.business.models import Business
+from FishingPortal.competition.models import Competition
+from FishingPortal.picture.models import Picture
 
 UserModel = get_user_model()
 

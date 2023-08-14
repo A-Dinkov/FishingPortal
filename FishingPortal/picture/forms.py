@@ -1,8 +1,11 @@
+# Django imports
 from django import forms
-from .models import Picture
-from ..adventure.models import Adventure
-from ..business.models import Business
-from ..competition.models import Competition
+
+# Application imports
+from FishingPortal.adventure.models import Adventure
+from FishingPortal.business.models import Business
+from FishingPortal.competition.models import Competition
+from FishingPortal.picture.models import Picture
 
 
 class UploadPictureForm(forms.ModelForm):

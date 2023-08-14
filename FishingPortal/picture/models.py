@@ -1,13 +1,15 @@
+# Django imports
 from django.contrib.auth import get_user_model
-from django.core.validators import FileExtensionValidator
+from django.core.validators import FileExtensionValidator, MinLengthValidator, MaxLengthValidator
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils import timezone
+
+# Application imports
 from FishingPortal.adventure.models import Adventure
 from FishingPortal.auth_app.validators import ValidateImageSize, ValidateIsOnlyAlpha
 from FishingPortal.business.models import Business
 from FishingPortal.competition.models import Competition
-from django.core.validators import MinLengthValidator, MaxLengthValidator
 
 
 class Picture(models.Model):
