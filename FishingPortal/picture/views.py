@@ -7,7 +7,7 @@ from django.views import generic as gen_views
 
 # Application imports
 from FishingPortal.business.models import Like
-from FishingPortal.picture.filters import PictureFilterPrivate, PictureFilter
+from FishingPortal.picture.filters import PictureFilterPrivate, PictureFilter, PictureFilterOwner
 from FishingPortal.picture.forms import PhotoEditForm, UploadPictureForm
 from FishingPortal.picture.models import Picture
 
@@ -32,7 +32,7 @@ class UploadPictureView(LoginRequiredMixin, gen_views.CreateView):
             return reverse('home')
 
     def get_form_kwargs(self):
-        kwargs = super(UploadPictureView, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
 
@@ -43,42 +43,110 @@ class UploadPictureView(LoginRequiredMixin, gen_views.CreateView):
         return super().form_valid(form)
 
 
+# class PhotoListView(LoginRequiredMixin, gen_views.ListView):
+#     model = Picture
+#     template_name = 'picture/list-photos.html'
+#     context_object_name = 'photos'
+#     paginate_by = 10
+#
+#     def __init__(self, *args, **kwargs):
+#         super().__init__(*args, **kwargs)
+#         self.filter = None
+#
+#     def get_queryset(self):
+#         queryset = super().get_queryset().all()
+#         self.filter = PictureFilter(self.request.GET, queryset=queryset)
+#         return self.filter.qs
+#
+#     def get_context_data(self, **kwargs):
+#         userprofile = self.request.user.userprofile
+#         context = super().get_context_data(**kwargs)
+#         context['filter'] = self.filter
+#         context['show_filter'] = 'all_photos'
+#         context['user_profile'] = userprofile
+#         return context
+#
+#
+# class PrivatePhotoView(PhotoListView):
+#
+#     def get_queryset(self):
+#         queryset = super().get_queryset().filter(uploader=self.request.user)
+#         self.filter = PictureFilterPrivate(self.request.GET, queryset=queryset, user=self.request.user)
+#         return self.filter.qs
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['filter'] = self.filter
+#         context['show_filter'] = 'user_photos'
+#         return context
+#
+#
+# class OwnerPhotoView(PhotoListView):
+#
+#     def get_queryset(self):
+#         queryset = super().get_queryset().filter(uploader=self.request.user)
+#         self.filter = PictureFilterOwner(self.request.GET, queryset=queryset, user=self.request.user)
+#         return self.filter.qs
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['filter'] = self.filter
+#         context['show_filter'] = 'owner_photos'
+#         return context
+
+
 class PhotoListView(LoginRequiredMixin, gen_views.ListView):
     model = Picture
     template_name = 'picture/list-photos.html'
     context_object_name = 'photos'
     paginate_by = 10
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.filter = None
-
     def get_queryset(self):
         queryset = super().get_queryset().all()
-        self.filter = PictureFilter(self.request.GET, queryset=queryset)
+        self.filter = self.get_filter(queryset)
         return self.filter.qs
 
+    def get_filter(self, queryset):
+        return PictureFilter(self.request.GET, queryset=queryset)
+
     def get_context_data(self, **kwargs):
-        userprofile = self.request.user.userprofile
         context = super().get_context_data(**kwargs)
         context['filter'] = self.filter
-        context['show_filter'] = 'all_photos'
-        context['user_profile'] = userprofile
+        context['show_filter'] = self.get_show_filter()
+        try:
+            context['user_profile'] = self.request.user.userprofile
+        except AttributeError:
+            context['user_profile'] = None
         return context
+
+    def get_show_filter(self):
+        return 'all_photos'
 
 
 class PrivatePhotoView(PhotoListView):
 
     def get_queryset(self):
         queryset = super().get_queryset().filter(uploader=self.request.user)
-        self.filter = PictureFilterPrivate(self.request.GET, queryset=queryset, user=self.request.user)
-        return self.filter.qs
+        return queryset
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['filter'] = self.filter
-        context['show_filter'] = 'user_photos'
-        return context
+    def get_filter(self, queryset):
+        return PictureFilterPrivate(self.request.GET, queryset=queryset, user=self.request.user)
+
+    def get_show_filter(self):
+        return 'user_photos'
+
+
+class OwnerPhotoView(PhotoListView):
+
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(uploader=self.request.user)
+        return queryset
+
+    def get_filter(self, queryset):
+        return PictureFilterOwner(self.request.GET, queryset=queryset, user=self.request.user)
+
+    def get_show_filter(self):
+        return 'owner_photos'
 
 
 class BusinessPhotoListView(PhotoListView):
@@ -95,6 +163,7 @@ class BusinessPhotoListView(PhotoListView):
         context = super().get_context_data(**kwargs)
         if 'pk' in self.kwargs:
             context['business_pk'] = self.kwargs['pk']
+            print(context['business_pk'])
         return context
 
 
