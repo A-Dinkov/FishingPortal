@@ -45,15 +45,22 @@
         </div>
         {% if not business_pk %}
             {% if show_filter == 'all_photos' %}
-            <form id="filter-form" method="get">
+            <form class="filter-form" method="get">
                 <div class="filter-wrapper">
                    {{ filter.form.as_p }}
                    <button type="submit">Filter</button>
                 </div>
             </form>
         {% elif show_filter == 'user_photos' %}
-            <form id="filter-form" method="get">
+            <form class="filter-form" method="get">
                 <div class="filter-wrapper my-photo">
+                   {{ filter.form.as_p }}
+                   <button class="my-photo" type="submit">Filter</button>
+                </div>
+            </form>
+        {% elif show_filter == 'owner_photos' %}
+            <form class="filter-form" method="get">
+                <div class="filter-wrapper owner-photo">
                    {{ filter.form.as_p }}
                    <button class="my-photo" type="submit">Filter</button>
                 </div>
