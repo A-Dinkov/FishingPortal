@@ -700,7 +700,7 @@ div.main-container-outer.photos-list {
     margin-left: 2.5rem;
 }
 
-#filter-form {
+form.filter-form {
     width: 25%;
     height: 71.5vh;
     background-color: #b9e5e2;
@@ -718,6 +718,10 @@ div.filter-wrapper {
 div.filter-wrapper.my-photo {
     margin-top: 2rem;
     row-gap: 2.5rem;
+}
+
+div.filter-wrapper.owner-photo {
+    row-gap: 2rem;
 }
 
 div.filter-wrapper div:nth-child(6) div:first-child,
@@ -844,4 +848,15 @@ div.likes-container.pictures {
  #likes a i {
     color: #375d6f;
 
+}
+
+div #id_related_competition div label:nth-child(1) {
+    display: flex;
+    flex-direction: row;
+}
+
+div #id_related_competition div label input:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
 }
