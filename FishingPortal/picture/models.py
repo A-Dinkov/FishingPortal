@@ -77,6 +77,9 @@ class Picture(models.Model):
         null=True
     )
 
+    class Meta:
+        ordering = ['upload_date']
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
 
