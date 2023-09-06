@@ -14,7 +14,9 @@ UserModel = get_user_model()
 
 class BasePictureFilter(django_filters.FilterSet):
     title = django_filters.CharFilter(lookup_expr='icontains')
-    upload_date = django_filters.DateFilter(field_name='upload_date', lookup_expr='exact')
+    upload_date = django_filters.DateFilter(field_name='upload_date',
+                                            lookup_expr='exact',
+                                            widget=forms.DateInput(attrs={'class': 'datepicker'}))
 
     class Meta:
         model = Picture
@@ -51,3 +53,11 @@ class PictureFilterOwner(BasePictureFilter):
         super().__init__(*args, **kwargs)
         self.filters['related_business'].queryset = Business.objects.filter(owner=user)
         self.filters['related_competition'].queryset = Competition.objects.filter(business__owner=user)
+
+
+class BusinessPictureFilter(BasePictureFilter):
+    def __init__(self, *args, **kwargs):
+        business = kwargs.pop('business', None)
+        super().__init__(*args, **kwargs)
+        if business:
+            self.filters['upload_date'].queryset = Picture.objects.filter(related_business=business)
