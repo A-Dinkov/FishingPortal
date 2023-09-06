@@ -43,29 +43,36 @@
                 </span>
             </div>
         </div>
-        {% if not business_pk %}
+{#        {% if not business_pk %}#}
             {% if show_filter == 'all_photos' %}
-            <form class="filter-form" method="get">
-                <div class="filter-wrapper">
-                   {{ filter.form.as_p }}
-                   <button type="submit">Filter</button>
-                </div>
-            </form>
-        {% elif show_filter == 'user_photos' %}
-            <form class="filter-form" method="get">
-                <div class="filter-wrapper my-photo">
-                   {{ filter.form.as_p }}
-                   <button class="my-photo" type="submit">Filter</button>
-                </div>
-            </form>
-        {% elif show_filter == 'owner_photos' %}
-            <form class="filter-form" method="get">
-                <div class="filter-wrapper owner-photo">
-                   {{ filter.form.as_p }}
-                   <button class="my-photo" type="submit">Filter</button>
-                </div>
-            </form>
-        {% endif %}
+                <form class="filter-form" method="get">
+                    <div class="filter-wrapper">
+                       {{ filter.form.as_p }}
+                       <button type="submit">Filter</button>
+                    </div>
+                </form>
+            {% elif show_filter == 'user_photos' %}
+                <form class="filter-form" method="get">
+                    <div class="filter-wrapper my-photo">
+                       {{ filter.form.as_p }}
+                       <button class="my-photo" type="submit">Filter</button>
+                    </div>
+                </form>
+            {% elif show_filter == 'owner_photos' %}
+                <form class="filter-form" method="get">
+                    <div class="filter-wrapper owner-photo">
+                       {{ filter.form.as_p }}
+                       <button class="my-photo" type="submit">Filter</button>
+                    </div>
+                </form>
+            {% elif show_filter == 'business_photos' %}
+                <form class="filter-form" method="get">
+                    <div class="filter-wrapper business-photo">
+                       {{ filter.form.as_p }}
+                       <button class="business-photo" type="submit">Filter</button>
+                    </div>
+                </form>
+
         {% endif %}
     </div>
 {% endblock %}
