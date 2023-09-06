@@ -16,6 +16,6 @@ urlpatterns = [
     path('edit/<str:slug>/', PhotoEditView.as_view(), name='edit_photo'),
     path('delete/<str:slug>/', PhotoDeleteView.as_view(), name='delete_photo'),
     path('list-photos/', PhotoListView.as_view(), name='list_photos'),
-    path('business/<int:pk>/list-photos', BusinessPhotoListView.as_view(), name='business_photo'),
+    path('business/<int:business_pk>/list-photos', BusinessPhotoListView.as_view(), name='business_photo'),
     path('like/photo/<slug:object_slug>/', like_object, name='like_photo', kwargs={'model': 'photo'}),
 ]
