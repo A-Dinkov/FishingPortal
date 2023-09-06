@@ -28,6 +28,9 @@ class UploadPictureForm(forms.ModelForm):
             'description': forms.Textarea(
                 attrs={'placeholder': 'Enter photo description'}
             ),
+            'upload_date': forms.DateInput(
+                attrs={'class': 'datepicker'}
+            )
 
         }
 
