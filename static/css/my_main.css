@@ -386,7 +386,7 @@ div.delete-competition input {
 #photo-details-container {
     overflow: hidden;
     width: 47vh;
-    height: 76vh;
+    height: 74vh;
     position: relative;
     row-gap: 1.5rem;
 }
@@ -400,6 +400,7 @@ div.delete-competition input {
     width: auto;
     height: auto;
 }
+
 div.photo-details-inner-container {
     display: flex;
     flex-direction: column;
@@ -715,7 +716,8 @@ div.filter-wrapper {
     row-gap: 0.8rem;
 }
 
-div.filter-wrapper.my-photo {
+div.filter-wrapper.my-photo,
+div.filter-wrapper.business-photo {
     margin-top: 2rem;
     row-gap: 2.5rem;
 }
@@ -723,6 +725,11 @@ div.filter-wrapper.my-photo {
 div.filter-wrapper.owner-photo {
     row-gap: 2rem;
 }
+
+/*div.filter-wrapper.business-photo {*/
+/*    row-gap: 2rem;*/
+/*}*/
+
 
 div.filter-wrapper div:nth-child(6) div:first-child,
 div.filter-wrapper div:nth-child(6) div:nth-child(2),
@@ -760,6 +767,9 @@ div.filter-wrapper button.my-photo {
     margin-top: 3rem;
 }
 
+div.filter-wrapper button.business-photo {
+    margin-top: 8rem;
+}
 
 div.pagination {
     text-align: center;
