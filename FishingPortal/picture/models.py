@@ -95,3 +95,4 @@ class Picture(models.Model):
         return f'Uploaded by {self.uploader.userprofile.first_name} {self.uploader.userprofile.last_name}'
 
 
+
