@@ -1,7 +1,7 @@
 # Django imports
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views import generic as views
 
 # Application imports
@@ -30,8 +30,10 @@ class AdventureDetailView(LoginRequiredMixin, views.DetailView):
 class EditAdventureView(LoginRequiredMixin, views.UpdateView):
     model = Adventure
     template_name = 'adventure/edit.html'
-    success_url = reverse_lazy('adventure_details')
     form_class = AdventureEditForm
+
+    def get_success_url(self):
+        return reverse('adventure_details', kwargs={'slug': self.object.slug})
 
 
 class DeleteAdventureView(LoginRequiredMixin, views.DeleteView):
