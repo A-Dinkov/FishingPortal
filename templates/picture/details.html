@@ -6,7 +6,7 @@
         <div class="photo-details-inner-container">
             <p>{{ photo.title }}</p>
             <p>{{ photo.description }}</p>
-            <p>{{ photo.upload_date }}</p>
+            <p>{{ photo.upload_date | date:"d M Y"}}</p>
             <p>{{ photo.uploader.userprofile.first_name }} {{ photo.uploader.userprofile.last_name }}</p>
         </div>
         <div class="likes-container pictures">
@@ -23,4 +23,6 @@
         {% endif %}
 
     </div>
+
+
 {% endblock %}
